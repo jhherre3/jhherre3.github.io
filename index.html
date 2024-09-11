@@ -3,22 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jhherre3 Projects</title>
+    <meta name="description" content="jhherre3's project portfolio showcasing development and engineering projects.">
+    <title>jhherre3 - Project Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff !important;
+        }
+        .hero-section {
+            background-color: #343a40;
+            color: white;
+            padding: 50px 0;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+        }
+        .section {
+            padding: 40px 0;
+        }
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Project Portfolio</h1>
-    <p>I'm Jhherre3, and this is where I showcase my engineering and tech projects.</p>
 
-    <!-- Add a section for your projects -->
-    <h2>Featured Projects</h2>
-    <ul>
-        <li><strong>Drone Project:</strong> Custom flight controller and drone builds.</li>
-        <li><strong>Python Projects:</strong> Various tools and simulations in Python.</li>
-        <li><strong>PCB Design:</strong> Custom PCB designs using KiCad.</li>
-    </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">jhherre3</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Placeholder for images -->
-    <img src="your-image-link-here" alt="Project Image" width="300">
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1>Welcome to My Portfolio</h1>
+            <p class="lead">Showcasing my latest projects in development, engineering, and technology.</p>
+        </div>
+    </section>
 
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="text-center">Featured Projects</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="project1.jpg" class="card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Drone Controller</h5>
+                            <p class="card-text">Building a custom drone flight controller using Python and IoT technologies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="project2.jpg" class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Web3 Application</h5>
+                            <p class="card-text">Developing a decentralized application for blockchain-powered platforms.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="project3.jpg" class="card-img-top" alt="Project 3">
+                        <div class="card-body">
+                            <h5 class="card-title">PCB Design</h5>
+                            <p class="card-text">Designing custom PCBs using KiCad and Cadence for robotics applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section bg-light" id="contact">
+        <div class="container">
+            <h2 class="text-center">Get in Touch</h2>
+            <p class="text-center">Interested in collaborating or learning more about my work? Reach out to me!</p>
+            <div class="text-center">
+                <a href="mailto:youremail@example.com" class="btn btn-primary">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 jhherre3. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
