@@ -70,14 +70,13 @@
             background-color: #444; /* Darker button background */
             color: #fff; /* Light button text */
         }
-        /* Fix for Skills and Technologies Section */
-        .dark-mode #skills {
-            background-color: #222; /* Dark background for Skills section */
-            color: #f1f1f1; /* White text */
+        /* Fix for Skills and Technologies and Contact Sections */
+        .dark-mode #skills, .dark-mode #contact {
+            background-color: #121212; /* Dark background for these sections */
+            color: #f1f1f1; /* White text for readability */
         }
-        .dark-mode #contact {
-            background-color: #222; /* Dark background for Contact section */
-            color: #f1f1f1; /* White text */
+        .dark-mode #skills h2, .dark-mode #contact h2 {
+            color: #f1f1f1; /* Ensure section headers are also white */
         }
         .dark-mode input, .dark-mode textarea {
             background-color: #333; /* Dark input fields */
@@ -159,7 +158,7 @@
     </section>
 
     <!-- Skills and Technologies Section -->
-    <section class="section bg-light" id="skills">
+    <section class="section" id="skills">
         <div class="container">
             <h2 class="text-center">Skills and Technologies</h2>
             <p class="text-center">Here are some of the key skills and technologies I have experience with:</p>
@@ -209,7 +208,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section bg-light" id="contact">
+    <section class="section" id="contact">
         <div class="container">
             <h2 class="text-center">Get in Touch</h2>
             <p class="text-center">Interested in collaborating or learning more about my work? Reach out to me!</p>
