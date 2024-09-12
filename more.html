@@ -120,6 +120,7 @@
 
             const head = {x: snake[0].x + dx, y: snake[0].y + dy};
 
+            // Check if snake eats food
             if (head.x === food.x && head.y === food.y) {
                 food = {x: getRandomFood(), y: getRandomFood()};
             } else {
@@ -129,7 +130,11 @@
             snake.unshift(head);
 
             // Check for collision with walls or self
-            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || snake.some(part => part.x === head.x && part.y === head.y)) {
+            if (
+                head.x < 0 || head.x >= canvas.width || 
+                head.y < 0 || head.y >= canvas.height || 
+                snake.some((part, index) => index !== 0 && part.x === head.x && part.y === head.y)
+            ) {
                 gameOver = true;
                 document.querySelector('.game-over').style.display = 'block'; // Show game over message
                 return; // Stop the game loop
@@ -144,7 +149,7 @@
         }
 
         function loop() {
-            if (!gameStarted || gameOver) return; // Only loop if the game has started and not over
+            if (!gameStarted || gameOver) return; // Only loop if the game has started and is not over
             requestAnimationFrame(loop);
             update();
             draw();
