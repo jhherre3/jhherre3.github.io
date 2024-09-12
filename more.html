@@ -38,6 +38,12 @@
             border: 2px solid #000;
             margin-top: 20px;
         }
+        .game-over {
+            color: red;
+            font-size: 24px;
+            display: none; /* Hide by default */
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +75,7 @@
                 <h3>Interactive Mini-Game: Snake</h3>
                 <canvas id="snakeGame" width="400" height="400"></canvas>
                 <p>Click on the game area to start. Use arrow keys to control the snake. Try to eat the food!</p>
+                <div class="game-over">Game Over! Click the game area to restart.</div>
             </div>
         </div>
     </section>
@@ -92,6 +99,7 @@
         let dx = grid;
         let dy = 0;
         let gameStarted = false; // To track if the game has started
+        let gameOver = false;
 
         function getRandomFood() {
             return Math.floor(Math.random() * 20) * grid;
@@ -120,8 +128,11 @@
 
             snake.unshift(head);
 
+            // Check for collision with walls or self
             if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || snake.some(part => part.x === head.x && part.y === head.y)) {
-                document.location.reload();
+                gameOver = true;
+                document.querySelector('.game-over').style.display = 'block'; // Show game over message
+                return; // Stop the game loop
             }
         }
 
@@ -133,7 +144,7 @@
         }
 
         function loop() {
-            if (!gameStarted) return; // Only loop if the game has started
+            if (!gameStarted || gameOver) return; // Only loop if the game has started and not over
             requestAnimationFrame(loop);
             update();
             draw();
@@ -141,6 +152,15 @@
 
         // Start the game when the canvas is clicked
         canvas.addEventListener('click', function() {
+            if (gameOver) {
+                // Reset game state
+                snake = [{x: 160, y: 160}, {x: 140, y: 160}, {x: 120, y: 160}, {x: 100, y: 160}];
+                dx = grid;
+                dy = 0;
+                food = {x: getRandomFood(), y: getRandomFood()};
+                gameOver = false;
+                document.querySelector('.game-over').style.display = 'none'; // Hide game over message
+            }
             if (!gameStarted) {
                 gameStarted = true;
                 requestAnimationFrame(loop);
