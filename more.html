@@ -75,7 +75,7 @@
                 <h3>Interactive Mini-Game: Snake</h3>
                 <canvas id="snakeGame" width="400" height="400"></canvas>
                 <p>Click on the game area to start. Use arrow keys to control the snake. Try to eat the food!</p>
-                <div class="game-over">Game Over! Click the game area to restart.</div>
+                <div class="game-over">Game Over! Restarting...</div>
             </div>
         </div>
     </section>
@@ -100,6 +100,7 @@
         let dy = 0;
         let gameStarted = false; // To track if the game has started
         let gameOver = false;
+        let speed = 6; // Controls the speed of the snake (higher = slower)
 
         function getRandomFood() {
             return Math.floor(Math.random() * 20) * grid;
@@ -115,7 +116,7 @@
         }
 
         function update() {
-            if (++count < 4) return;
+            if (++count < speed) return; // Slows down the game speed
             count = 0;
 
             const head = {x: snake[0].x + dx, y: snake[0].y + dy};
@@ -137,6 +138,7 @@
             ) {
                 gameOver = true;
                 document.querySelector('.game-over').style.display = 'block'; // Show game over message
+                setTimeout(resetGame, 2000); // Restart the game after 2 seconds
                 return; // Stop the game loop
             }
         }
@@ -155,17 +157,19 @@
             draw();
         }
 
+        function resetGame() {
+            // Reset game state after game over
+            snake = [{x: 160, y: 160}, {x: 140, y: 160}, {x: 120, y: 160}, {x: 100, y: 160}];
+            dx = grid;
+            dy = 0;
+            food = {x: getRandomFood(), y: getRandomFood()};
+            gameOver = false;
+            document.querySelector('.game-over').style.display = 'none'; // Hide game over message
+            requestAnimationFrame(loop); // Restart the game loop
+        }
+
         // Start the game when the canvas is clicked
         canvas.addEventListener('click', function() {
-            if (gameOver) {
-                // Reset game state
-                snake = [{x: 160, y: 160}, {x: 140, y: 160}, {x: 120, y: 160}, {x: 100, y: 160}];
-                dx = grid;
-                dy = 0;
-                food = {x: getRandomFood(), y: getRandomFood()};
-                gameOver = false;
-                document.querySelector('.game-over').style.display = 'none'; // Hide game over message
-            }
             if (!gameStarted) {
                 gameStarted = true;
                 requestAnimationFrame(loop);
