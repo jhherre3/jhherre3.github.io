@@ -38,7 +38,7 @@
             border: 2px solid #000;
             margin-top: 20px;
         }
-        .game-over {
+        .game-over, .countdown {
             color: red;
             font-size: 24px;
             display: none; /* Hide by default */
@@ -75,7 +75,8 @@
                 <h3>Interactive Mini-Game: Snake</h3>
                 <canvas id="snakeGame" width="400" height="400"></canvas>
                 <p>Click on the game area to start. Use arrow keys to control the snake. Try to eat the food!</p>
-                <div class="game-over">Game Over! Restarting...</div>
+                <div class="game-over">Game Over! Click to restart.</div>
+                <div class="countdown">Game starting in 3...</div>
             </div>
         </div>
     </section>
@@ -101,6 +102,7 @@
         let gameStarted = false; // To track if the game has started
         let gameOver = false;
         let speed = 6; // Controls the speed of the snake (higher = slower)
+        let countdownElement = document.querySelector('.countdown');
 
         function getRandomFood() {
             return Math.floor(Math.random() * 20) * grid;
@@ -138,7 +140,6 @@
             ) {
                 gameOver = true;
                 document.querySelector('.game-over').style.display = 'block'; // Show game over message
-                setTimeout(resetGame, 2000); // Restart the game after 2 seconds
                 return; // Stop the game loop
             }
         }
@@ -157,6 +158,24 @@
             draw();
         }
 
+        // Countdown before starting the game
+        function startCountdown(callback) {
+            let counter = 3;
+            countdownElement.textContent = `Game starting in ${counter}...`;
+            countdownElement.style.display = 'block';
+
+            let countdownInterval = setInterval(() => {
+                counter--;
+                if (counter <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.style.display = 'none';
+                    callback(); // Start the game after countdown
+                } else {
+                    countdownElement.textContent = `Game starting in ${counter}...`;
+                }
+            }, 1000);
+        }
+
         function resetGame() {
             // Reset game state after game over
             snake = [{x: 160, y: 160}, {x: 140, y: 160}, {x: 120, y: 160}, {x: 100, y: 160}];
@@ -165,14 +184,20 @@
             food = {x: getRandomFood(), y: getRandomFood()};
             gameOver = false;
             document.querySelector('.game-over').style.display = 'none'; // Hide game over message
-            requestAnimationFrame(loop); // Restart the game loop
+            startCountdown(() => {
+                requestAnimationFrame(loop); // Restart the game loop after countdown
+            });
         }
 
         // Start the game when the canvas is clicked
         canvas.addEventListener('click', function() {
-            if (!gameStarted) {
+            if (gameOver) {
+                resetGame();
+            } else if (!gameStarted) {
                 gameStarted = true;
-                requestAnimationFrame(loop);
+                startCountdown(() => {
+                    requestAnimationFrame(loop); // Start the game loop after countdown
+                });
             }
         });
 
