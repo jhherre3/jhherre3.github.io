@@ -68,7 +68,7 @@
             <div class="game-container">
                 <h3>Interactive Mini-Game: Snake</h3>
                 <canvas id="snakeGame" width="400" height="400"></canvas>
-                <p>Use arrow keys to control the snake. Try to eat the food!</p>
+                <p>Click on the game area to start. Use arrow keys to control the snake. Try to eat the food!</p>
             </div>
         </div>
     </section>
@@ -91,6 +91,7 @@
         let food = {x: 320, y: 320};
         let dx = grid;
         let dy = 0;
+        let gameStarted = false; // To track if the game has started
 
         function getRandomFood() {
             return Math.floor(Math.random() * 20) * grid;
@@ -131,6 +132,22 @@
             ctx.fillRect(food.x, food.y, grid - 1, grid - 1);
         }
 
+        function loop() {
+            if (!gameStarted) return; // Only loop if the game has started
+            requestAnimationFrame(loop);
+            update();
+            draw();
+        }
+
+        // Start the game when the canvas is clicked
+        canvas.addEventListener('click', function() {
+            if (!gameStarted) {
+                gameStarted = true;
+                requestAnimationFrame(loop);
+            }
+        });
+
+        // Control snake direction
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft' && dx === 0) {
                 dx = -grid;
@@ -146,14 +163,6 @@
                 dx = 0;
             }
         });
-
-        function loop() {
-            requestAnimationFrame(loop);
-            update();
-            draw();
-        }
-
-        requestAnimationFrame(loop);
     </script>
 </body>
 </html>
