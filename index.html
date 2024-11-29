@@ -39,7 +39,6 @@
             padding: 20px 0;
             text-align: center;
         }
-        /* Ensure all images are the same size */
         .card-img-top {
             width: 100%;
             height: 200px;
@@ -70,18 +69,6 @@
             background-color: #444; /* Darker button background */
             color: #fff; /* Light button text */
         }
-        /* Fix for Skills and Technologies and Contact Sections */
-        .dark-mode #skills, .dark-mode #contact {
-            background-color: #121212; /* Dark background for these sections */
-            color: #f1f1f1; /* White text for readability */
-        }
-        .dark-mode #skills h2, .dark-mode #contact h2 {
-            color: #f1f1f1; /* Ensure section headers are also white */
-        }
-        .dark-mode input, .dark-mode textarea {
-            background-color: #333; /* Dark input fields */
-            color: #fff; /* Light text in input fields */
-        }
     </style>
 </head>
 <body>
@@ -97,7 +84,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="more.html">More</a></li> <!-- Added More link -->
+                    <li class="nav-item"><a class="nav-link" href="./more.html">More</a></li> <!-- Fixed More link -->
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
                 <!-- Dark Mode Toggle Button -->
@@ -119,7 +106,6 @@
         <div class="container">
             <h2 class="text-center">Featured Projects</h2>
             <div class="row mt-4">
-                <!-- Project 1: Embedded Systems Design -->
                 <div class="col-md-4">
                     <div class="card">
                         <img src="Embededsystems design2.jpg" class="card-img-top" alt="Embedded Systems Design">
@@ -129,7 +115,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Project 2: Custom Drone Flight Controller v1 -->
                 <div class="col-md-4">
                     <div class="card">
                         <img src="DronePrototypeFinal.jpg" class="card-img-top" alt="Custom Drone Flight Controller v1">
@@ -139,7 +124,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Project 3: DIY FPV Drone Build -->
                 <div class="col-md-4">
                     <div class="card">
                         <img src="DiyFpvdronebuild.jpg" class="card-img-top" alt="DIY FPV Drone Build">
@@ -152,58 +136,7 @@
             </div>
             <!-- Add More Button -->
             <div class="text-center mt-4">
-                <a href="more.html" class="btn btn-secondary">More</a> <!-- Added More Button -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills and Technologies Section -->
-    <section class="section" id="skills">
-        <div class="container">
-            <h2 class="text-center">Skills and Technologies</h2>
-            <p class="text-center">Here are some of the key skills and technologies I have experience with:</p>
-            <div class="row">
-                <div class="col-md-4">
-                    <ul>
-                        <li>Electrical Design</li>
-                        <li>PCB Design</li>
-                        <li>Cadence</li>
-                        <li>Drone Systems</li>
-                        <li>Embedded Systems</li>
-                        <li>IoT (Internet of Things)</li>
-                        <li>Robotics</li>
-                        <li>Fusion360</li>
-                        <li>Prototyping</li>
-                        <li>Technical Writing</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul>
-                        <li>3D Printing</li>
-                        <li>Video Recognition</li>
-                        <li>Tensorflow</li>
-                        <li>Fixing Electrical Issues</li>
-                        <li>Python</li>
-                        <li>MATLAB</li>
-                        <li>VS Code</li>
-                        <li>GitHub</li>
-                        <li>HTML & Web Development</li>
-                        <li>Web3 Development</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul>
-                        <li>Circuit Debugging and Repair</li>
-                        <li>Soldering and Wiring</li>
-                        <li>Microcontrollers (ESP, STM, PIC)</li>
-                        <li>Flight Controllers</li>
-                        <li>Machine Learning Basics</li>
-                        <li>Artificial Intelligence</li>
-                        <li>Control Systems</li>
-                        <li>CAD Modeling</li>
-                        <li>Arduino</li>
-                    </ul>
-                </div>
+                <a href="./more.html" class="btn btn-secondary">More</a> <!-- Fixed More Button -->
             </div>
         </div>
     </section>
@@ -248,7 +181,6 @@
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
 
-        // Check for saved preference
         if (localStorage.getItem('dark-mode') === 'enabled') {
             body.classList.add('dark-mode');
             darkModeToggle.textContent = 'Light Mode';
@@ -257,10 +189,10 @@
         darkModeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
             if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode', 'enabled'); // Save preference
+                localStorage.setItem('dark-mode', 'enabled');
                 darkModeToggle.textContent = 'Light Mode';
             } else {
-                localStorage.setItem('dark-mode', 'disabled'); // Save preference
+                localStorage.setItem('dark-mode', 'disabled');
                 darkModeToggle.textContent = 'Dark Mode';
             }
         });
