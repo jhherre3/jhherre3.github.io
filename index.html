@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="jhherre3's UAV/UAS projects portfolio showcasing innovation in drone systems, embedded design, and advanced technology.">
+    <meta name="description" content="jhherre3's UAV/UAS portfolio showcasing innovation in drone systems and advanced technology.">
     <title>jhherre3 - UAV/UAS Portfolio</title>
 
     <!-- Bootstrap CSS -->
@@ -61,7 +61,6 @@
                     <li class="nav-item"><a class="nav-link" href="more.html">More</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
-                <button id="darkModeToggle" class="btn btn-outline-light ms-3">Dark Mode</button>
             </div>
         </div>
     </nav>
@@ -79,7 +78,8 @@
         <div class="container">
             <h2 class="text-center">Featured UAV/UAS Projects</h2>
             <div class="row mt-4">
-                <div class="col-md-4">
+                <!-- Project 1: UAV/UAS Sensor Integration -->
+                <div class="col-md-6">
                     <div class="card">
                         <img src="uas_sensor_integration.jpg" class="card-img-top" alt="UAV/UAS Sensor Integration">
                         <div class="card-body">
@@ -88,7 +88,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <!-- Project 2: DSP-Based Person Tracking -->
+                <div class="col-md-6">
                     <div class="card">
                         <img src="dsp_person_tracking.jpg" class="card-img-top" alt="DSP-Based Person Tracking">
                         <div class="card-body">
@@ -97,20 +98,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="autonomous_navigation.jpg" class="card-img-top" alt="Autonomous Navigation">
-                        <div class="card-body">
-                            <h5 class="card-title">Autonomous UAV Navigation</h5>
-                            <p class="card-text">Created an autonomous navigation system with SLAM and obstacle avoidance for drones operating in dynamic environments.</p>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <!-- Add More Button -->
+            <div class="text-center mt-4">
+                <a href="more.html" class="btn btn-secondary">More</a>
             </div>
         </div>
     </section>
 
-    <!-- Skills and Technologies Section -->
+    <!-- Skills Section -->
     <section class="section" id="skills">
         <div class="container">
             <h2 class="text-center">UAV/UAS Skills and Technologies</h2>
@@ -146,52 +142,10 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <h2 class="text-center">Get in Touch</h2>
-            <p class="text-center">Collaborate with me on cutting-edge UAV/UAS projects.</p>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <form action="https://formspree.io/f/meojwezb" method="POST">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Your Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Your Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Your Message:</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <p>© 2024 jhherre3. All rights reserved.</p>
     </footer>
 
-    <script>
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = 'Light Mode';
-        }
-
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
-            darkModeToggle.textContent = body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
-        });
-    </script>
 </body>
 </html>
