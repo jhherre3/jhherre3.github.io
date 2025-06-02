@@ -218,12 +218,17 @@
       render();
     }
 
-    // Controls
-    window.addEventListener("keydown", function (e) {
-      const step = 25;
-      if (e.key === "ArrowUp" && playerY > 0) playerY -= step;
-      if (e.key === "ArrowDown" && playerY < canvas.height - paddleHeight) playerY += step;
-    });
+   // Controls
+window.addEventListener("keydown", function (e) {
+  const step = 25;
+  if (["ArrowUp", "ArrowDown"].includes(e.key)) {
+    e.preventDefault(); // ✅ Prevent page from scrolling
+  }
+
+  if (e.key === "ArrowUp" && playerY > 0) playerY -= step;
+  if (e.key === "ArrowDown" && playerY < canvas.height - paddleHeight) playerY += step;
+});
+
 
     setInterval(game, 1000 / 60); // 60 FPS
   </script>
