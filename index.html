@@ -357,37 +357,79 @@
       </div>
     </header>
 
-    <!-- Move Featured after main title: place GIF + workflow + toolchain first -->
-    <section class="section pt-0">
+    <!-- Featured Projects moved AFTER main title + workflow + toolchain -->
+    <section class="section pt-0" id="featured">
       <div class="container">
-        <div class="row g-3">
-          <div class="col-lg-4">
-            <div class="panel">
-              <h3>What I do</h3>
-              <p>
-                Embedded hardware / electrical automation design with a strong R&amp;D bias—building systems that make machines smarter,
-                more efficient, and more reliable.
-              </p>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">
+          A curated set that best represents my direction in embedded systems, robotics/UAS, and prototype-driven engineering.
+        </p>
+
+        <div class="row g-3 mt-2">
+          <!-- Project 1 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img src="Rpiyolortosdrone.jpg" class="thumb" alt="Raspberry Pi YOLO Drone" />
+              <div class="card-body">
+                <div class="meta-row">
+                  <span class="meta">Computer Vision</span>
+                  <span class="meta">Edge Compute</span>
+                  <span class="meta">YOLO</span>
+                </div>
+                <h5 class="card-title">Raspberry Pi YOLO Drone</h5>
+                <p class="card-text">
+                  Real-time detection on constrained compute for UAV-oriented workflows—focused on reliability, performance tuning, and deployment constraints.
+                </p>
+              </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="panel">
-              <h3>How I work</h3>
-              <p>
-                I move fast without being sloppy: safe-state defaults, power-first thinking, measurable validation, and documentation that
-                makes the work reproducible.
-              </p>
+
+          <!-- Project 2 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Custom Flight Controller Prototype" />
+              <div class="card-body">
+                <div class="meta-row">
+                  <span class="meta">PCB</span>
+                  <span class="meta">IMU / Sensors</span>
+                  <span class="meta">Embedded</span>
+                </div>
+                <h5 class="card-title">Custom Flight Controller</h5>
+                <p class="card-text">
+                  Custom controller prototype centered on PCB bring-up, sensor validation, and clean firmware architecture for iteration.
+                </p>
+              </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="panel">
-              <h3>Where I’m headed</h3>
-              <p>
-                Robotics and UAS systems (any domain) while deepening PCB-driven product development. Long-term: turn this capability into a business.
-              </p>
+
+          <!-- Project 3 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img src="spiral.png" class="thumb" alt="RoboDK Python Toolpath Simulation" />
+              <div class="card-body">
+                <div class="meta-row">
+                  <span class="meta">Robotics</span>
+                  <span class="meta">Python</span>
+                  <span class="meta">Simulation</span>
+                </div>
+                <h5 class="card-title">RoboDK Python Toolpath Demo</h5>
+                <p class="card-text">
+                  Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation validation, repeatable testing.
+                </p>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Optional: subtle link row (no big buttons under hero) -->
+        <div class="text-center mt-4">
+          <a href="projects.html" class="nav-link d-inline-block" style="font-weight:800; text-decoration:none;">
+            View all projects →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
         <hr class="soft-rule my-4" />
 
@@ -528,80 +570,7 @@
       </div>
     </section>
 
-    <!-- Featured Projects moved AFTER main title + workflow + toolchain -->
-    <section class="section pt-0" id="featured">
-      <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">
-          A curated set that best represents my direction in embedded systems, robotics/UAS, and prototype-driven engineering.
-        </p>
-
-        <div class="row g-3 mt-2">
-          <!-- Project 1 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-              <img src="Rpiyolortosdrone.jpg" class="thumb" alt="Raspberry Pi YOLO Drone" />
-              <div class="card-body">
-                <div class="meta-row">
-                  <span class="meta">Computer Vision</span>
-                  <span class="meta">Edge Compute</span>
-                  <span class="meta">YOLO</span>
-                </div>
-                <h5 class="card-title">Raspberry Pi YOLO Drone</h5>
-                <p class="card-text">
-                  Real-time detection on constrained compute for UAV-oriented workflows—focused on reliability, performance tuning, and deployment constraints.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-              <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Custom Flight Controller Prototype" />
-              <div class="card-body">
-                <div class="meta-row">
-                  <span class="meta">PCB</span>
-                  <span class="meta">IMU / Sensors</span>
-                  <span class="meta">Embedded</span>
-                </div>
-                <h5 class="card-title">Custom Flight Controller</h5>
-                <p class="card-text">
-                  Custom controller prototype centered on PCB bring-up, sensor validation, and clean firmware architecture for iteration.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-              <img src="spiral.png" class="thumb" alt="RoboDK Python Toolpath Simulation" />
-              <div class="card-body">
-                <div class="meta-row">
-                  <span class="meta">Robotics</span>
-                  <span class="meta">Python</span>
-                  <span class="meta">Simulation</span>
-                </div>
-                <h5 class="card-title">RoboDK Python Toolpath Demo</h5>
-                <p class="card-text">
-                  Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation validation, repeatable testing.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Optional: subtle link row (no big buttons under hero) -->
-        <div class="text-center mt-4">
-          <a href="projects.html" class="nav-link d-inline-block" style="font-weight:800; text-decoration:none;">
-            View all projects →
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
+    
   <!-- Footer (keep consistent across all pages) -->
   <footer>
     <div class="container">
