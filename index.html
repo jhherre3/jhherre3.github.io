@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="jhherre3's Robotics Engineering portfolio with expertise in UAV/UAS, embedded systems, and electrical engineering." />
-  <title>jhherre3 - Robotics Engineer Portfolio</title>
+  <meta name="description" content="Jeremiah Herrera — Embedded hardware, automation, and R&D prototyping portfolio. PCB design, sensors, robotics, and UAS flight control systems." />
+  <title>Jeremiah Herrera | Embedded Hardware • Automation • R&D</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Google Font (clean, modern) -->
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root{
       --brand: #F46E24;
       --bg: #0b0f14;
-      --card: rgba(255,255,255,.06);
+      --panel: rgba(255,255,255,.06);
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.68);
       --border: rgba(255,255,255,.10);
@@ -29,31 +29,26 @@
     html { scroll-behavior: smooth; }
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 700px at 10% 0%, rgba(244,110,36,.22), transparent 55%),
-                  radial-gradient(900px 600px at 90% 10%, rgba(120,180,255,.10), transparent 55%),
-                  var(--bg);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(244,110,36,.22), transparent 55%),
+        radial-gradient(900px 600px at 90% 10%, rgba(120,180,255,.10), transparent 55%),
+        var(--bg);
       color: var(--text);
     }
 
-    /* Base */
     a { color: inherit; }
     .text-muted { color: var(--muted) !important; }
-    .container { max-width: 1100px; }
+    .container { max-width: 1120px; }
 
     /* Navbar */
     .navbar{
-      background: rgba(10,14,20,.6);
+      background: rgba(10,14,20,.65);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
-    .navbar .nav-link{
-      color: var(--muted) !important;
-      font-weight: 500;
-    }
-    .navbar .nav-link:hover{ color: var(--text) !important; }
     .navbar-brand{
-      font-weight: 700;
-      letter-spacing: .2px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
       display: inline-flex;
       align-items: center;
       gap: .55rem;
@@ -62,20 +57,25 @@
     .brand-dot{
       width: 10px; height: 10px; border-radius: 50%;
       background: var(--brand);
-      box-shadow: 0 0 0 4px rgba(244,110,36,.20);
+      box-shadow: 0 0 0 4px rgba(244,110,36,.18);
       display: inline-block;
     }
+    .nav-link{
+      color: var(--muted) !important;
+      font-weight: 600;
+    }
+    .nav-link:hover{ color: var(--text) !important; }
 
     /* Buttons */
     .btn{
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
       padding: .65rem 1rem;
     }
     .btn-brand{
       background: var(--brand);
       border: 1px solid rgba(244,110,36,.35);
-      color: #111;
+      color: #121212;
     }
     .btn-brand:hover{ filter: brightness(1.05); }
     .btn-ghost{
@@ -86,24 +86,22 @@
     .btn-ghost:hover{ background: rgba(255,255,255,.09); }
 
     /* Hero */
-    .hero{
-      padding: 5.25rem 0 3.25rem;
-    }
+    .hero{ padding: 5.25rem 0 3rem; }
     .hero h1{
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      font-weight: 800;
+      font-size: clamp(2.2rem, 4vw, 3.35rem);
+      font-weight: 900;
       line-height: 1.05;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       margin-bottom: .9rem;
     }
-    .hero p.lead{
+    .hero .lead{
       color: var(--muted);
-      max-width: 56ch;
+      max-width: 70ch;
       margin: 0 auto;
       font-size: 1.05rem;
-      line-height: 1.6;
+      line-height: 1.65;
     }
-    .hero .pill-row{
+    .pill-row{
       display: flex;
       flex-wrap: wrap;
       gap: .5rem;
@@ -122,34 +120,35 @@
     /* Sections */
     section.section { padding: 2.75rem 0; }
     .section-title{
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-bottom: 1rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: .5rem;
     }
     .section-subtitle{
       color: var(--muted);
-      max-width: 70ch;
+      max-width: 80ch;
+      margin-bottom: 0;
     }
 
-    /* Cards */
-    .card{
-      background: var(--card);
+    /* Panels & Cards */
+    .panel, .card{
+      background: var(--panel);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+    }
+    .panel{ padding: 1.2rem; }
+    .panel h3{
+      font-size: 1.0rem;
+      font-weight: 900;
+      margin-bottom: .4rem;
+      letter-spacing: -0.01em;
+    }
+    .panel p{ color: var(--muted); margin-bottom: 0; line-height: 1.65; }
+
+    .card{
       overflow: hidden;
       height: 100%;
-    }
-    .card .card-body{ padding: 1.15rem 1.15rem 1.25rem; }
-    .card-title{
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-bottom: .5rem;
-    }
-    .card-text{
-      color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: .9rem;
     }
     .thumb{
       width: 100%;
@@ -157,11 +156,22 @@
       object-fit: cover;
       filter: saturate(1.05) contrast(1.03);
     }
+    .card-body{ padding: 1.15rem 1.15rem 1.25rem; }
+    .card-title{
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      margin-bottom: .45rem;
+    }
+    .card-text{
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: .9rem;
+    }
     .meta-row{
       display: flex;
       flex-wrap: wrap;
       gap: .5rem;
-      margin-bottom: .9rem;
+      margin-bottom: .85rem;
     }
     .meta{
       font-size: .78rem;
@@ -172,53 +182,29 @@
       border-radius: 999px;
     }
 
-    /* “Now” / Update panel */
-    .panel{
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.2rem;
-      box-shadow: var(--shadow);
-    }
-    .panel h3{
-      font-size: 1.05rem;
-      font-weight: 800;
-      margin-bottom: .35rem;
-    }
-    .panel .small{
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .kpi{
+    /* Tool list */
+    .tool-grid{
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: .75rem;
-      margin-top: 1rem;
+      margin-top: .75rem;
     }
-    .kpi .box{
+    .tool-item{
       border-radius: 14px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.04);
       padding: .85rem;
     }
-    .kpi .num{
-      font-weight: 900;
-      font-size: 1.2rem;
-      letter-spacing: -0.01em;
-    }
-    .kpi .label{
-      color: var(--muted);
-      font-size: .85rem;
-      margin-top: .1rem;
-    }
-    @media (max-width: 768px){
-      .kpi{ grid-template-columns: 1fr; }
+    .tool-item .k{ font-weight: 900; letter-spacing: -0.01em; }
+    .tool-item .v{ color: var(--muted); margin-top: .15rem; font-size: .93rem; line-height: 1.5; }
+    @media (max-width: 992px){
+      .tool-grid{ grid-template-columns: 1fr; }
     }
 
     /* Footer */
     footer{
       border-top: 1px solid var(--border);
-      background: rgba(10,14,20,.6);
+      background: rgba(10,14,20,.65);
       backdrop-filter: blur(10px);
       padding: 1.2rem 0;
       color: var(--muted);
@@ -243,10 +229,9 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-      <!-- FIX: brand now points to index.html instead of missing cogio.html -->
       <a class="navbar-brand" href="index.html">
         <span class="brand-dot"></span>
-        jhherre3
+        Jeremiah Herrera
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -259,13 +244,13 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
           <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
 
-        <!-- Optional: add your real links when ready -->
         <div class="d-flex gap-2 ms-lg-3 mt-3 mt-lg-0">
           <a class="btn btn-ghost" href="projects.html">View Work</a>
-          <a class="btn btn-brand" href="contact.html">Hire / Collaborate</a>
+          <a class="btn btn-brand" href="resume.html">Resume</a>
         </div>
       </div>
     </div>
@@ -275,73 +260,96 @@
     <!-- Hero -->
     <header class="hero text-center">
       <div class="container">
-        <h1>Robotics Engineer focused on embedded systems, UAV/UAS, and real-world sensor integration.</h1>
+        <h1>Embedded hardware, automation, and R&D prototyping—built for reliability.</h1>
         <p class="lead">
-          I build practical hardware + software systems—flight control prototypes, machine vision demos, and automation tooling—
-          with an emphasis on reliability, electrical architecture, and deployment constraints.
+          I design and prototype PCBs, integrate sensors, and build embedded systems that modernize equipment and enable new capabilities.
+          My interests span robotics and UAS flight control, but the consistent theme is engineering innovation with disciplined iteration.
         </p>
 
-        <div class="pill-row" aria-label="Core skills">
-          <span class="pill">Embedded Systems</span>
-          <span class="pill">UAV / Flight Control</span>
-          <span class="pill">Sensor Fusion / IMU</span>
-          <span class="pill">Computer Vision</span>
-          <span class="pill">Robotics Automation</span>
+        <div class="pill-row" aria-label="Core focus">
+          <span class="pill">PCB Design & Bring-Up</span>
+          <span class="pill">Embedded Firmware</span>
+          <span class="pill">Sensors & Interfaces</span>
+          <span class="pill">Automation Systems</span>
+          <span class="pill">Robotics / UAS</span>
+          <span class="pill">Rapid Prototyping (3D Print)</span>
         </div>
 
         <div class="d-flex gap-2 justify-content-center mt-4">
-          <a class="btn btn-brand" href="#featured">See Featured Projects</a>
+          <a class="btn btn-brand" href="#featured">Featured Projects</a>
           <a class="btn btn-ghost" href="projects.html">All Projects</a>
+          <a class="btn btn-ghost" href="contact.html">Contact</a>
         </div>
       </div>
     </header>
 
-    <!-- Now / Updates -->
+    <!-- Capabilities -->
     <section class="section">
       <div class="container">
-        <div class="row g-3 align-items-stretch">
-          <div class="col-lg-7">
+        <div class="row g-3">
+          <div class="col-lg-4">
             <div class="panel h-100">
-              <h3>Now</h3>
-              <p class="small mb-2">
-                Currently improving flight controller prototyping workflows and documenting repeatable bring-up steps
-                (power integrity, sensor validation, and I/O safe-state handling).
+              <h3>What I do</h3>
+              <p>
+                Embedded hardware design, electrical automation, and R&D problem-solving—taking ideas from concept to working prototype
+                through rigorous bring-up, testing, and iteration.
               </p>
-              <p class="small mb-0">
-                This site is designed as a living portfolio—projects are updated as milestones land, not only when they’re “finished.”
-              </p>
-
-              <div class="kpi" aria-label="Snapshot">
-                <div class="box">
-                  <div class="num">UAV / UAS</div>
-                  <div class="label">Flight control + sensor integration</div>
-                </div>
-                <div class="box">
-                  <div class="num">Embedded</div>
-                  <div class="label">Hardware + firmware architecture</div>
-                </div>
-                <div class="box">
-                  <div class="num">Vision</div>
-                  <div class="label">YOLO demos on constrained compute</div>
-                </div>
-              </div>
             </div>
           </div>
-
-          <div class="col-lg-5">
+          <div class="col-lg-4">
             <div class="panel h-100">
-              <h3>Quick Links</h3>
-              <p class="small mb-3">
-                Add your canonical links here. If you don’t have them yet, remove this card until ready.
+              <h3>How I work</h3>
+              <p>
+                Fast prototypes with strong fundamentals: power integrity, safe states, measurable validation, and clear documentation.
+                The goal is reliable systems, not just demos.
               </p>
-              <div class="d-grid gap-2">
-                <!-- Replace # with your actual links -->
-                <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">GitHub</a>
-                <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">Resume (PDF)</a>
-                <a class="btn btn-brand" href="contact.html">Contact</a>
-              </div>
             </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="panel h-100">
+              <h3>Where I’m headed</h3>
+              <p>
+                Robotics and UAS systems (any domain) while continuing to deepen embedded hardware and PCB-driven product development.
+                Long-term: build this into a business.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolchain -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Toolchain</h2>
+        <p class="section-subtitle">
+          Practical tools I use for design, firmware, and validation. (This is intentionally specific—no buzzword padding.)
+        </p>
+
+        <div class="tool-grid">
+          <div class="tool-item">
+            <div class="k">Hardware / Platforms</div>
+            <div class="v">PIC32, STM32, ESP32, Raspberry Pi</div>
+          </div>
+          <div class="tool-item">
+            <div class="k">PCB / CAD</div>
+            <div class="v">KiCad, Eagle, Fusion 360 (PCB + mechanical), Bambu X1C</div>
+          </div>
+          <div class="tool-item">
+            <div class="k">Firmware</div>
+            <div class="v">MPLAB, STM32Cube, Arduino, CircuitPython • C (MPLAB focus)</div>
+          </div>
+          <div class="tool-item">
+            <div class="k">Interfaces</div>
+            <div class="v">UART, SPI, I2C, Ethernet, Wi-Fi</div>
+          </div>
+          <div class="tool-item">
+            <div class="k">Test / Bring-Up</div>
+            <div class="v">Bench supplies, DMM, oscilloscope, SMD soldering and rework</div>
+          </div>
+          <div class="tool-item">
+            <div class="k">Prototyping</div>
+            <div class="v">Custom parts, fixtures, and enclosures via 3D printing</div>
           </div>
         </div>
       </div>
@@ -354,12 +362,12 @@
           <div>
             <h2 class="section-title mb-1">Featured Projects</h2>
             <p class="section-subtitle mb-0">
-              A curated set of work that best represents my core focus areas. Full list available on the Projects page.
+              A curated set that best represents my technical direction (embedded systems, robotics/UAS, and prototyping).
             </p>
           </div>
           <div class="d-flex gap-2">
-            <a class="btn btn-ghost" href="projects.html">View All Projects</a>
-            <a class="btn btn-brand" href="contact.html">Work With Me</a>
+            <a class="btn btn-ghost" href="projects.html">View All</a>
+            <a class="btn btn-brand" href="resume.html">Resume</a>
           </div>
         </div>
 
@@ -367,7 +375,7 @@
           <!-- Project 1 -->
           <div class="col-md-6 col-lg-4">
             <div class="card h-100">
-              <img src="Rpiyolortosdrone.jpg" class="thumb" alt="RPi YOLO Drone" />
+              <img src="Rpiyolortosdrone.jpg" class="thumb" alt="Raspberry Pi YOLO Drone" />
               <div class="card-body">
                 <div class="meta-row">
                   <span class="meta">Computer Vision</span>
@@ -376,11 +384,11 @@
                 </div>
                 <h5 class="card-title">Raspberry Pi YOLO Drone</h5>
                 <p class="card-text">
-                  Real-time person detection on constrained compute for UAV-oriented workflows. Focused on performance tuning,
-                  capture pipeline reliability, and practical deployment constraints.
+                  Real-time person detection on constrained compute for UAV-oriented workflows—focused on capture pipeline reliability,
+                  performance tuning, and deployment constraints.
                 </p>
                 <div class="d-flex gap-2">
-                  <a class="btn btn-ghost w-100" href="projects.html">Case Study</a>
+                  <a class="btn btn-ghost w-100" href="projects.html">Details</a>
                   <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Person-Detection-Raspberry-pi" target="_blank" rel="noopener">GitHub</a>
                 </div>
               </div>
@@ -390,20 +398,20 @@
           <!-- Project 2 -->
           <div class="col-md-6 col-lg-4">
             <div class="card h-100">
-              <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Flight Controller Prototype" />
+              <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Custom Flight Controller Prototype" />
               <div class="card-body">
                 <div class="meta-row">
-                  <span class="meta">UAV / UAS</span>
-                  <span class="meta">IMU</span>
+                  <span class="meta">PCB</span>
+                  <span class="meta">IMU / Sensors</span>
                   <span class="meta">Embedded</span>
                 </div>
                 <h5 class="card-title">Custom Flight Controller</h5>
                 <p class="card-text">
-                  Custom controller prototype built around a Honeywell HGuide IMU with a focus on sensor validation,
-                  safe-state I/O, and clean firmware architecture for iteration speed.
+                  Custom controller prototype built around a Honeywell HGuide IMU with emphasis on PCB bring-up, sensor validation,
+                  and clean firmware architecture for fast iteration.
                 </p>
                 <div class="d-flex gap-2">
-                  <a class="btn btn-ghost w-100" href="projects.html">Case Study</a>
+                  <a class="btn btn-ghost w-100" href="projects.html">Details</a>
                   <a class="btn btn-brand w-100" href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank" rel="noopener">Project Page</a>
                 </div>
               </div>
@@ -418,15 +426,15 @@
                 <div class="meta-row">
                   <span class="meta">Robotics</span>
                   <span class="meta">Python</span>
-                  <span class="meta">RoboDK</span>
+                  <span class="meta">Simulation</span>
                 </div>
                 <h5 class="card-title">RoboDK Python Toolpath Demo</h5>
                 <p class="card-text">
-                  Python-driven motion scripting and simulation for a 6-axis robot. Emphasis on toolpath generation,
-                  repeatability, and clean interfaces for rapid iteration.
+                  Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation-driven validation,
+                  and a clean interface for repeatable testing.
                 </p>
                 <div class="d-flex gap-2">
-                  <a class="btn btn-ghost w-100" href="projects.html">Case Study</a>
+                  <a class="btn btn-ghost w-100" href="projects.html">Details</a>
                   <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Python_robodk_demo" target="_blank" rel="noopener">GitHub</a>
                 </div>
               </div>
@@ -434,39 +442,26 @@
           </div>
         </div>
 
-        <!-- Optional fun section: keep if you want personality, otherwise remove for strict professional -->
         <div class="text-center mt-4">
-          <p class="text-muted mb-2">Optional: keep personality, but keep it controlled.</p>
-          <a class="btn btn-ghost" href="#footer">Back to footer</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Controlled “personality” section (replaces GIF block; more professional) -->
-    <section class="section">
-      <div class="container">
-        <div class="panel text-center">
-          <h3 class="mb-2">Engineering Philosophy</h3>
-          <p class="small mb-0">
-            Build the smallest reliable prototype, instrument it, validate inputs/outputs, then scale. Documentation is part of the product.
-          </p>
+          <a href="projects.html" class="btn btn-ghost">View All Projects</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer id="footer">
+  <footer>
     <div class="container">
       <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
         <div>
-          <div class="fw-semibold">© <span id="year"></span> jhherre3</div>
-          <div class="small text-muted">Robotics • Embedded • UAV/UAS</div>
+          <div class="fw-semibold">© <span id="year"></span> Jeremiah Herrera</div>
+          <div class="small text-muted">Embedded Hardware • Automation • R&D • Robotics / UAS</div>
         </div>
         <div class="d-flex gap-3">
-          <a href="mailto:jhherre3@asu.edu">jhherre3@asu.edu</a>
           <a href="projects.html">Projects</a>
+          <a href="resume.html">Resume</a>
           <a href="contact.html">Contact</a>
+          <a href="mailto:jhherre3@asu.edu">jhherre3@asu.edu</a>
         </div>
       </div>
     </div>
@@ -474,8 +469,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Small JS: footer year + (optional) future enhancements -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
