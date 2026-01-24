@@ -12,7 +12,7 @@
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -24,6 +24,8 @@
       --border: rgba(255,255,255,.10);
       --shadow: 0 18px 50px rgba(0,0,0,.35);
       --radius: 16px;
+      --chip: rgba(0,0,0,.22);
+      --chipBorder: rgba(255,255,255,.10);
     }
 
     html { scroll-behavior: smooth; }
@@ -40,14 +42,14 @@
     .text-muted { color: var(--muted) !important; }
     .container { max-width: 1120px; }
 
-    /* Navbar */
+    /* Navbar (KEEP SAME ACROSS ALL PAGES) */
     .navbar{
       background: rgba(10,14,20,.65);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
     .navbar-brand{
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: -0.01em;
       display: inline-flex;
       align-items: center;
@@ -62,33 +64,14 @@
     }
     .nav-link{
       color: var(--muted) !important;
-      font-weight: 600;
+      font-weight: 700;
     }
     .nav-link:hover{ color: var(--text) !important; }
 
-    /* Buttons */
-    .btn{
-      border-radius: 999px;
-      font-weight: 700;
-      padding: .65rem 1rem;
-    }
-    .btn-brand{
-      background: var(--brand);
-      border: 1px solid rgba(244,110,36,.35);
-      color: #121212;
-    }
-    .btn-brand:hover{ filter: brightness(1.05); }
-    .btn-ghost{
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn-ghost:hover{ background: rgba(255,255,255,.09); }
-
     /* Hero */
-    .hero{ padding: 5.25rem 0 3rem; }
+    .hero{ padding: 5.25rem 0 2.25rem; text-align: center; }
     .hero h1{
-      font-size: clamp(2.2rem, 4vw, 3.35rem);
+      font-size: clamp(2.1rem, 4vw, 3.25rem);
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -0.03em;
@@ -96,11 +79,12 @@
     }
     .hero .lead{
       color: var(--muted);
-      max-width: 70ch;
+      max-width: 78ch;
       margin: 0 auto;
       font-size: 1.05rem;
       line-height: 1.65;
     }
+
     .pill-row{
       display: flex;
       flex-wrap: wrap;
@@ -110,11 +94,12 @@
     }
     .pill{
       font-size: .85rem;
-      color: rgba(255,255,255,.80);
+      color: rgba(255,255,255,.82);
       background: rgba(255,255,255,.06);
       border: 1px solid var(--border);
       padding: .35rem .7rem;
       border-radius: 999px;
+      user-select: none;
     }
 
     /* Sections */
@@ -122,12 +107,13 @@
     .section-title{
       font-weight: 900;
       letter-spacing: -0.02em;
-      margin-bottom: .5rem;
+      margin-bottom: .55rem;
     }
     .section-subtitle{
       color: var(--muted);
-      max-width: 80ch;
+      max-width: 90ch;
       margin-bottom: 0;
+      line-height: 1.65;
     }
 
     /* Panels & Cards */
@@ -137,15 +123,106 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-    .panel{ padding: 1.2rem; }
+    .panel{ padding: 1.2rem; height: 100%; }
     .panel h3{
-      font-size: 1.0rem;
+      font-size: 1.05rem;
       font-weight: 900;
       margin-bottom: .4rem;
       letter-spacing: -0.01em;
     }
     .panel p{ color: var(--muted); margin-bottom: 0; line-height: 1.65; }
 
+    .workflow{
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+    .step{
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding: .9rem;
+      height: 100%;
+    }
+    .step .n{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px; height: 28px;
+      border-radius: 999px;
+      background: rgba(244,110,36,.20);
+      border: 1px solid rgba(244,110,36,.35);
+      color: var(--text);
+      font-weight: 900;
+      margin-bottom: .55rem;
+    }
+    .step .k{
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      margin-bottom: .25rem;
+    }
+    .step .v{
+      color: var(--muted);
+      font-size: .93rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    @media (max-width: 992px){
+      .workflow{ grid-template-columns: 1fr; }
+    }
+
+    /* Toolchain (filtered lists) */
+    .filter-bar{
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: .9rem;
+    }
+    .filter-chip{
+      font-size: .85rem;
+      font-weight: 800;
+      padding: .35rem .7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.82);
+      cursor: pointer;
+      user-select: none;
+    }
+    .filter-chip.active{
+      background: rgba(244,110,36,.20);
+      border-color: rgba(244,110,36,.45);
+      color: var(--text);
+    }
+
+    .tool-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+    .tool-item{
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding: .95rem;
+      height: 100%;
+    }
+    .tool-item .k{ font-weight: 900; letter-spacing: -0.01em; margin-bottom: .35rem; }
+    .tool-list{
+      margin: 0;
+      padding-left: 1.05rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: .95rem;
+    }
+    .tool-item[hidden]{ display:none !important; }
+    @media (max-width: 992px){
+      .tool-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Cards */
     .card{
       overflow: hidden;
       height: 100%;
@@ -165,7 +242,7 @@
     .card-text{
       color: var(--muted);
       line-height: 1.55;
-      margin-bottom: .9rem;
+      margin-bottom: 0;
     }
     .meta-row{
       display: flex;
@@ -176,32 +253,41 @@
     .meta{
       font-size: .78rem;
       color: rgba(255,255,255,.78);
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,255,255,.10);
+      background: var(--chip);
+      border: 1px solid var(--chipBorder);
       padding: .25rem .55rem;
       border-radius: 999px;
     }
 
-    /* Tool list */
-    .tool-grid{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .75rem;
-      margin-top: .75rem;
-    }
-    .tool-item{
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      padding: .85rem;
-    }
-    .tool-item .k{ font-weight: 900; letter-spacing: -0.01em; }
-    .tool-item .v{ color: var(--muted); margin-top: .15rem; font-size: .93rem; line-height: 1.5; }
-    @media (max-width: 992px){
-      .tool-grid{ grid-template-columns: 1fr; }
+    /* Section separators */
+    .soft-rule{
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.10);
+      margin: 0;
     }
 
-    /* Footer */
+    /* GIF section */
+    .gif-wrap{
+      display: grid;
+      place-items: center;
+      gap: .75rem;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .gif-wrap img{
+      max-width: 100%;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .gif-wrap .quote{
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Footer (KEEP SAME ACROSS ALL PAGES) */
     footer{
       border-top: 1px solid var(--border);
       background: rgba(10,14,20,.65);
@@ -226,7 +312,7 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Navbar -->
+  <!-- Navbar (Home / Projects / Resume / Contact ONLY) -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -242,136 +328,215 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
           <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
-
-        <div class="d-flex gap-2 ms-lg-3 mt-3 mt-lg-0">
-          <a class="btn btn-ghost" href="projects.html">View Work</a>
-          <a class="btn btn-brand" href="resume.html">Resume</a>
-        </div>
       </div>
     </div>
   </nav>
 
   <main id="main">
     <!-- Hero -->
-    <header class="hero text-center">
+    <header class="hero">
       <div class="container">
-        <h1>Embedded hardware, automation, and R&D prototyping—built for reliability.</h1>
+        <h1>Embedded hardware, automation, and R&amp;D prototyping—built for reliability.</h1>
         <p class="lead">
           I design and prototype PCBs, integrate sensors, and build embedded systems that modernize equipment and enable new capabilities.
           My interests span robotics and UAS flight control, but the consistent theme is engineering innovation with disciplined iteration.
         </p>
 
         <div class="pill-row" aria-label="Core focus">
-          <span class="pill">PCB Design & Bring-Up</span>
-          <span class="pill">Embedded Firmware</span>
-          <span class="pill">Sensors & Interfaces</span>
+          <span class="pill">Embedded Hardware</span>
+          <span class="pill">PCB Design &amp; Bring-Up</span>
+          <span class="pill">Sensors &amp; Interfaces</span>
           <span class="pill">Automation Systems</span>
           <span class="pill">Robotics / UAS</span>
-          <span class="pill">Rapid Prototyping (3D Print)</span>
-        </div>
-
-        <div class="d-flex gap-2 justify-content-center mt-4">
-          <a class="btn btn-brand" href="#featured">Featured Projects</a>
-          <a class="btn btn-ghost" href="projects.html">All Projects</a>
-          <a class="btn btn-ghost" href="contact.html">Contact</a>
+          <span class="pill">Prototyping + Testing</span>
         </div>
       </div>
     </header>
 
-    <!-- Capabilities -->
-    <section class="section">
+    <!-- Move Featured after main title: place GIF + workflow + toolchain first -->
+    <section class="section pt-0">
       <div class="container">
         <div class="row g-3">
           <div class="col-lg-4">
-            <div class="panel h-100">
+            <div class="panel">
               <h3>What I do</h3>
               <p>
-                Embedded hardware design, electrical automation, and R&D problem-solving—taking ideas from concept to working prototype
-                through rigorous bring-up, testing, and iteration.
+                Embedded hardware / electrical automation design with a strong R&amp;D bias—building systems that make machines smarter,
+                more efficient, and more reliable.
               </p>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="panel h-100">
+            <div class="panel">
               <h3>How I work</h3>
               <p>
-                Fast prototypes with strong fundamentals: power integrity, safe states, measurable validation, and clear documentation.
-                The goal is reliable systems, not just demos.
+                I move fast without being sloppy: safe-state defaults, power-first thinking, measurable validation, and documentation that
+                makes the work reproducible.
               </p>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="panel h-100">
+            <div class="panel">
               <h3>Where I’m headed</h3>
               <p>
-                Robotics and UAS systems (any domain) while continuing to deepen embedded hardware and PCB-driven product development.
-                Long-term: build this into a business.
+                Robotics and UAS systems (any domain) while deepening PCB-driven product development. Long-term: turn this capability into a business.
               </p>
             </div>
+          </div>
+        </div>
+
+        <hr class="soft-rule my-4" />
+
+        <h2 class="section-title">Engineering workflow</h2>
+        <p class="section-subtitle">
+          The throughline across my work is repeatable iteration: define the problem, prototype quickly, test hard, and refine until it’s reliable.
+        </p>
+
+        <div class="workflow" aria-label="Engineering workflow steps">
+          <div class="step">
+            <div class="n">1</div>
+            <div class="k">Ideation</div>
+            <p class="v">Clarify the objective, constraints, and what “good” looks like. Identify the fastest path to a measurable prototype.</p>
+          </div>
+          <div class="step">
+            <div class="n">2</div>
+            <div class="k">Architecture</div>
+            <p class="v">Partition hardware/firmware, define interfaces, and plan safe states. Power budget and IO plan first.</p>
+          </div>
+          <div class="step">
+            <div class="n">3</div>
+            <div class="k">Prototype</div>
+            <p class="v">Breadboard/dev board and quick CAD fixtures. Build the minimum that validates the key risks early.</p>
+          </div>
+          <div class="step">
+            <div class="n">4</div>
+            <div class="k">PCB &amp; Integration</div>
+            <p class="v">Schematic → layout → bring-up. Sensor integration, comms validation, and mechanical fit for real-world use.</p>
+          </div>
+          <div class="step">
+            <div class="n">5</div>
+            <div class="k">Test &amp; Validate</div>
+            <p class="v">Bench testing with instrumentation. Capture failures, reproduce issues, and validate fixes with data.</p>
+          </div>
+          <div class="step">
+            <div class="n">6</div>
+            <div class="k">Iterate</div>
+            <p class="v">Refine for reliability: cleanup, documentation, and repeatability. Improve performance only after stability.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Toolchain -->
-    <section class="section">
+    <!-- Toolchain (filtered list you can keep updating) -->
+    <section class="section pt-0">
       <div class="container">
         <h2 class="section-title">Toolchain</h2>
         <p class="section-subtitle">
-          Practical tools I use for design, firmware, and validation. (This is intentionally specific—no buzzword padding.)
+          Tools and interfaces I actively use. This is designed to be easy to update over time (and you can drop logos into each category later).
         </p>
 
-        <div class="tool-grid">
-          <div class="tool-item">
-            <div class="k">Hardware / Platforms</div>
-            <div class="v">PIC32, STM32, ESP32, Raspberry Pi</div>
+        <div class="filter-bar" id="toolFilters" aria-label="Toolchain filters">
+          <span class="filter-chip active" data-tool-filter="all">All</span>
+          <span class="filter-chip" data-tool-filter="platforms">Platforms</span>
+          <span class="filter-chip" data-tool-filter="pcb">PCB / CAD</span>
+          <span class="filter-chip" data-tool-filter="firmware">Firmware</span>
+          <span class="filter-chip" data-tool-filter="interfaces">Interfaces</span>
+          <span class="filter-chip" data-tool-filter="test">Test / Bring-Up</span>
+          <span class="filter-chip" data-tool-filter="proto">Prototyping</span>
+        </div>
+
+        <div class="tool-grid mt-3">
+          <div class="tool-item" data-tool-tags="platforms">
+            <div class="k">Platforms</div>
+            <ul class="tool-list">
+              <li>PIC32</li>
+              <li>STM32</li>
+              <li>ESP32</li>
+              <li>Raspberry Pi</li>
+            </ul>
           </div>
-          <div class="tool-item">
+
+          <div class="tool-item" data-tool-tags="pcb">
             <div class="k">PCB / CAD</div>
-            <div class="v">KiCad, Eagle, Fusion 360 (PCB + mechanical), Bambu X1C</div>
+            <ul class="tool-list">
+              <li>KiCad</li>
+              <li>Eagle</li>
+              <li>Fusion 360 (PCB + Mechanical)</li>
+              <li>Bambu X1C (rapid fixtures/enclosures)</li>
+            </ul>
           </div>
-          <div class="tool-item">
+
+          <div class="tool-item" data-tool-tags="firmware">
             <div class="k">Firmware</div>
-            <div class="v">MPLAB, STM32Cube, Arduino, CircuitPython • C (MPLAB focus)</div>
+            <ul class="tool-list">
+              <li>C (MPLAB focus)</li>
+              <li>MPLAB</li>
+              <li>STM32Cube</li>
+              <li>Arduino</li>
+              <li>CircuitPython</li>
+            </ul>
           </div>
-          <div class="tool-item">
+
+          <div class="tool-item" data-tool-tags="interfaces">
             <div class="k">Interfaces</div>
-            <div class="v">UART, SPI, I2C, Ethernet, Wi-Fi</div>
+            <ul class="tool-list">
+              <li>UART</li>
+              <li>SPI</li>
+              <li>I2C</li>
+              <li>Ethernet</li>
+              <li>Wi-Fi</li>
+            </ul>
           </div>
-          <div class="tool-item">
+
+          <div class="tool-item" data-tool-tags="test">
             <div class="k">Test / Bring-Up</div>
-            <div class="v">Bench supplies, DMM, oscilloscope, SMD soldering and rework</div>
+            <ul class="tool-list">
+              <li>Bench power supplies</li>
+              <li>Multimeter (DMM)</li>
+              <li>Oscilloscope</li>
+              <li>SMD soldering + rework</li>
+            </ul>
           </div>
-          <div class="tool-item">
+
+          <div class="tool-item" data-tool-tags="proto">
             <div class="k">Prototyping</div>
-            <div class="v">Custom parts, fixtures, and enclosures via 3D printing</div>
+            <ul class="tool-list">
+              <li>3D-printed fixtures</li>
+              <li>Enclosures</li>
+              <li>Custom parts / adapters</li>
+              <li>Prototype-driven documentation</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Projects -->
-    <section class="section" id="featured">
+    <!-- Bring the GIF back -->
+    <section class="section pt-0">
       <div class="container">
-        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
-          <div>
-            <h2 class="section-title mb-1">Featured Projects</h2>
-            <p class="section-subtitle mb-0">
-              A curated set that best represents my technical direction (embedded systems, robotics/UAS, and prototyping).
-            </p>
-          </div>
-          <div class="d-flex gap-2">
-            <a class="btn btn-ghost" href="projects.html">View All</a>
-            <a class="btn btn-brand" href="resume.html">Resume</a>
-          </div>
+        <div class="panel gif-wrap">
+          <h2 class="section-title mb-0">Just one more thing…</h2>
+          <img src="I'Ll Be Back Arnold Schwarzenegger GIF by Top 100 Movie Quotes of All Time.gif" alt="I’ll be back GIF" />
+          <p class="quote">
+            “I’ll be back.” — the moment that pushed me toward robotics.
+          </p>
         </div>
+      </div>
+    </section>
 
-        <div class="row g-3 mt-1">
+    <!-- Featured Projects moved AFTER main title + workflow + toolchain -->
+    <section class="section pt-0" id="featured">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">
+          A curated set that best represents my direction in embedded systems, robotics/UAS, and prototype-driven engineering.
+        </p>
+
+        <div class="row g-3 mt-2">
           <!-- Project 1 -->
           <div class="col-md-6 col-lg-4">
             <div class="card h-100">
@@ -384,13 +549,8 @@
                 </div>
                 <h5 class="card-title">Raspberry Pi YOLO Drone</h5>
                 <p class="card-text">
-                  Real-time person detection on constrained compute for UAV-oriented workflows—focused on capture pipeline reliability,
-                  performance tuning, and deployment constraints.
+                  Real-time detection on constrained compute for UAV-oriented workflows—focused on reliability, performance tuning, and deployment constraints.
                 </p>
-                <div class="d-flex gap-2">
-                  <a class="btn btn-ghost w-100" href="projects.html">Details</a>
-                  <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Person-Detection-Raspberry-pi" target="_blank" rel="noopener">GitHub</a>
-                </div>
               </div>
             </div>
           </div>
@@ -407,13 +567,8 @@
                 </div>
                 <h5 class="card-title">Custom Flight Controller</h5>
                 <p class="card-text">
-                  Custom controller prototype built around a Honeywell HGuide IMU with emphasis on PCB bring-up, sensor validation,
-                  and clean firmware architecture for fast iteration.
+                  Custom controller prototype centered on PCB bring-up, sensor validation, and clean firmware architecture for iteration.
                 </p>
-                <div class="d-flex gap-2">
-                  <a class="btn btn-ghost w-100" href="projects.html">Details</a>
-                  <a class="btn btn-brand w-100" href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank" rel="noopener">Project Page</a>
-                </div>
               </div>
             </div>
           </div>
@@ -430,34 +585,33 @@
                 </div>
                 <h5 class="card-title">RoboDK Python Toolpath Demo</h5>
                 <p class="card-text">
-                  Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation-driven validation,
-                  and a clean interface for repeatable testing.
+                  Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation validation, repeatable testing.
                 </p>
-                <div class="d-flex gap-2">
-                  <a class="btn btn-ghost w-100" href="projects.html">Details</a>
-                  <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Python_robodk_demo" target="_blank" rel="noopener">GitHub</a>
-                </div>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Optional: subtle link row (no big buttons under hero) -->
         <div class="text-center mt-4">
-          <a href="projects.html" class="btn btn-ghost">View All Projects</a>
+          <a href="projects.html" class="nav-link d-inline-block" style="font-weight:800; text-decoration:none;">
+            View all projects →
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (keep consistent across all pages) -->
   <footer>
     <div class="container">
       <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
         <div>
           <div class="fw-semibold">© <span id="year"></span> Jeremiah Herrera</div>
-          <div class="small text-muted">Embedded Hardware • Automation • R&D • Robotics / UAS</div>
+          <div class="small text-muted">Embedded Hardware • Automation • R&amp;D • Robotics / UAS</div>
         </div>
         <div class="d-flex gap-3">
+          <a href="index.html">Home</a>
           <a href="projects.html">Projects</a>
           <a href="resume.html">Resume</a>
           <a href="contact.html">Contact</a>
@@ -469,8 +623,34 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Toolchain filtering -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const chips = Array.from(document.querySelectorAll('.filter-chip'));
+    const toolItems = Array.from(document.querySelectorAll('.tool-item'));
+
+    function setActiveChip(el){
+      chips.forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function applyToolFilter(filter){
+      toolItems.forEach(item => {
+        const tags = (item.getAttribute('data-tool-tags') || '').split(' ').filter(Boolean);
+        const show = (filter === 'all') ? true : tags.includes(filter);
+        item.hidden = !show;
+      });
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const filter = chip.getAttribute('data-tool-filter');
+        setActiveChip(chip);
+        applyToolFilter(filter);
+      });
+    });
   </script>
 </body>
 </html>
