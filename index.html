@@ -3,219 +3,554 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="jhherre3's Robotics Engineering portfolio with expertise in UAV/UAS, embedded systems, and electrical engineering." />
+  <meta name="description" content="jhherre3's Robotics Engineering portfolio focused on embedded systems, UAV/UAS, sensing, and automation." />
   <title>jhherre3 - Robotics Engineer Portfolio</title>
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Google Fonts - VT323 -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Custom Styles -->
   <style>
-    body {
-      font-family: 'VT323', monospace !important;
-      background-color: #f8f9fa;
-      color: #000;
-      font-size: 1.2rem;
+    :root{
+      --brand: #F46E24;     /* Your orange */
+      --ink: #0b1220;
+      --muted: #64748b;
+      --card: #ffffff;
+      --bg: #f6f7fb;
+      --ring: rgba(244,110,36,.35);
+      --shadow: 0 10px 30px rgba(2,6,23,.08);
+      --shadow2: 0 12px 36px rgba(2,6,23,.12);
+      --radius: 18px;
     }
 
-    .navbar {
-      background-color: #F46E24;
+    /* Dark */
+    [data-theme="dark"]{
+      --ink: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0b1220;
+      --bg: #070b14;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --shadow2: 0 16px 40px rgba(0,0,0,.55);
+      --ring: rgba(244,110,36,.45);
     }
 
-    .navbar-brand, .navbar-nav .nav-link {
-      color: #000 !important;
+    html, body{ height: 100%; }
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(244,110,36,.18), transparent 55%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(99,102,241,.12), transparent 55%),
+                  var(--bg);
+      color: var(--ink);
+      letter-spacing: -0.01em;
     }
 
-    .hero-section {
-      background-color: #F46E24;
-      color: black;
-      padding: 50px 0;
+    /* Navbar */
+    .navbar{
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.7);
+      border-bottom: 1px solid rgba(15,23,42,.06);
+    }
+    [data-theme="dark"] .navbar{
+      background: rgba(7,11,20,.6);
+      border-bottom: 1px solid rgba(148,163,184,.12);
+    }
+    .navbar-brand{
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink) !important;
+    }
+    .nav-link{
+      color: var(--ink) !important;
+      opacity: .9;
+      font-weight: 500;
+    }
+    .nav-link:hover{ opacity: 1; }
+    .pill{
+      border-radius: 999px;
+      padding: .45rem .75rem;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.65);
+    }
+    [data-theme="dark"] .pill{
+      border-color: rgba(148,163,184,.18);
+      background: rgba(2,6,23,.35);
     }
 
-    .hero-section h1 {
-      font-size: 3rem;
+    /* Hero */
+    .hero{
+      padding: 5.25rem 0 2.75rem;
+    }
+    .hero-card{
+      border-radius: calc(var(--radius) + 6px);
+      background: linear-gradient(135deg, rgba(244,110,36,.12), rgba(99,102,241,.08)),
+                  var(--card);
+      border: 1px solid rgba(15,23,42,.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    [data-theme="dark"] .hero-card{
+      border-color: rgba(148,163,184,.14);
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(900px 220px at 20% 0%, rgba(244,110,36,.25), transparent 55%),
+                  radial-gradient(700px 260px at 80% 0%, rgba(99,102,241,.18), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position: relative;
+      padding: 2.5rem 2.5rem 2rem;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:.5rem;
+      align-items:center;
+      font-size:.9rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: .75rem;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--brand);
+      box-shadow: 0 0 0 6px rgba(244,110,36,.15);
+    }
+    h1{
+      font-weight: 750;
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      font-size: clamp(2.2rem, 3.6vw, 3.25rem);
+      margin-bottom: .9rem;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 60ch;
     }
 
-    .section {
-      padding: 40px 0;
+    /* Buttons */
+    .btn-brand{
+      background: var(--brand);
+      color: #0b1220;
+      border: 0;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: .8rem 1.05rem;
+      box-shadow: 0 10px 22px rgba(244,110,36,.18);
+    }
+    .btn-brand:hover{ filter: brightness(.98); transform: translateY(-1px); }
+    .btn-soft{
+      border-radius: 999px;
+      padding: .8rem 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(15,23,42,.12);
+    }
+    [data-theme="dark"] .btn-soft{
+      background: rgba(2,6,23,.35);
+      border-color: rgba(148,163,184,.18);
+    }
+    .btn-soft:hover{ transform: translateY(-1px); }
+
+    /* Sections */
+    .section{ padding: 3.25rem 0; }
+    .section-title{
+      font-weight: 750;
+      letter-spacing: -0.03em;
+    }
+    .section-sub{
+      color: var(--muted);
+      max-width: 70ch;
     }
 
-    .btn {
-      font-family: 'VT323', monospace !important;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
+    /* Cards */
+    .cardx{
+      background: var(--card);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      height: 100%;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-
-    .card-title,
-    .card-text,
-    .btn,
-    .lead,
-    p,
-    a {
-      font-family: 'VT323', monospace !important;
+    [data-theme="dark"] .cardx{
+      border-color: rgba(148,163,184,.14);
     }
-
-    footer {
-      background-color: #F46E24;
-      color: #000;
-      padding: 20px 0;
-      text-align: center;
+    .cardx:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--shadow2);
     }
-
-    .card-img-top {
+    .thumb{
+      height: 210px;
       width: 100%;
-      height: 200px;
       object-fit: cover;
+      display: block;
+      background: rgba(2,6,23,.06);
+    }
+    .cardx-body{
+      padding: 1.1rem 1.1rem 1.15rem;
+    }
+    .cardx h3{
+      font-size: 1.05rem;
+      font-weight: 750;
+      margin-bottom: .35rem;
+      letter-spacing: -0.02em;
+    }
+    .meta{
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: .75rem;
+    }
+    .tagrow{
+      display:flex; flex-wrap: wrap; gap:.4rem;
+      margin: .85rem 0 .85rem;
+    }
+    .tag{
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .28rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.7);
+      color: var(--ink);
+    }
+    [data-theme="dark"] .tag{
+      border-color: rgba(148,163,184,.16);
+      background: rgba(2,6,23,.35);
+    }
+    .linkrow{
+      display:flex; gap:.6rem; flex-wrap: wrap; align-items:center;
+    }
+    .small-link{
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid rgba(244,110,36,.45);
+      padding-bottom: 1px;
+    }
+    .small-link:hover{
+      border-bottom-color: rgba(244,110,36,1);
     }
 
-    /* Dark Mode Styles */
-    body.dark-mode {
-      background-color: #121212;
-      color: #f8f9fa;
+    /* “Now” panel */
+    .now{
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(244,110,36,.10), rgba(14,165,233,.08)),
+                  var(--card);
+      border: 1px solid rgba(15,23,42,.08);
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+    }
+    [data-theme="dark"] .now{ border-color: rgba(148,163,184,.14); }
+    .now h4{
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+      letter-spacing: -0.02em;
+    }
+    .now ul{
+      margin:0; padding-left: 1.2rem;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    .dark-mode .navbar, .dark-mode footer {
-      background-color: #222;
+    /* Footer */
+    footer{
+      border-top: 1px solid rgba(15,23,42,.06);
+      padding: 1.5rem 0;
+      color: var(--muted);
+      background: rgba(255,255,255,.45);
+    }
+    [data-theme="dark"] footer{
+      border-top-color: rgba(148,163,184,.12);
+      background: rgba(2,6,23,.35);
     }
 
-    .dark-mode .navbar-brand, .dark-mode .navbar-nav .nav-link {
-      color: #f8f9fa !important;
+    /* Focus ring */
+    a:focus, button:focus{
+      outline: none !important;
+      box-shadow: 0 0 0 .25rem var(--ring) !important;
     }
 
-    .dark-mode .hero-section {
-      background-color: #333;
-    }
-
-    .dark-mode .card {
-      background-color: #222;
-      color: #f8f9fa;
-    }
-
-    .dark-mode .btn {
-      background-color: #444;
-      color: #fff;
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
 </head>
-<body>
+
+<body data-theme="light">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-    <a class="navbar-brand" href="cogio.html">Jhherre3</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container py-2">
+      <!-- FIX: brand link should go to index.html, not cogio.html -->
+      <a class="navbar-brand" href="index.html">jhherre3</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link pill" href="index.html" aria-current="page">Home</a></li>
+          <li class="nav-item"><a class="nav-link pill" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link pill" href="contact.html">Contact</a></li>
+          <!-- Optional: add resume page when you create it -->
+          <!-- <li class="nav-item"><a class="nav-link pill" href="resume.html">Resume</a></li> -->
         </ul>
-        <button id="darkModeToggle" class="btn btn-outline-dark ms-3">Dark Mode</button>
+
+        <div class="d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
+          <button id="themeToggle" class="btn btn-soft" type="button" aria-label="Toggle theme">
+            Theme: Light
+          </button>
+          <!-- Replace # with your real links as you like -->
+          <a class="btn btn-brand" href="projects.html">View Work</a>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-section text-center">
+  <!-- Hero -->
+  <header class="hero">
     <div class="container">
-      <h1>Robotics Engineer</h1>
-      <p class="lead">Focused on electrical systems with expertise in UAV/UAS drone technology, sensor integration, and flight control systems.</p>
-    </div>
-  </section>
+      <div class="hero-card">
+        <div class="hero-inner">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-8">
+              <div class="kicker"><span class="dot"></span>Robotics / Embedded / UAV Systems</div>
+              <h1>Robotics Engineer focused on embedded sensing, control, and UAV/UAS systems.</h1>
+              <p class="lead">
+                I build practical systems—firmware, electronics, and tooling—around real constraints:
+                size/weight/power, reliability, integration, and repeatable testing.
+              </p>
 
-  <!-- Projects Section -->
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <a class="btn btn-brand" href="projects.html">Featured Projects</a>
+                <a class="btn btn-soft" href="contact.html">Contact</a>
+                <!-- Add a resume PDF and point this to it when ready -->
+                <!-- <a class="btn btn-soft" href="assets/Jeremiah-Herrera-Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a> -->
+              </div>
+
+              <div class="tagrow mt-4">
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">Sensor Integration</span>
+                <span class="tag">Controls</span>
+                <span class="tag">UAV/UAS</span>
+                <span class="tag">Python Tooling</span>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="now">
+                <h4>Now</h4>
+                <ul>
+                  <li>Developing and documenting UAV sensing + flight-control prototypes.</li>
+                  <li>Building robotics tooling (Python + simulation) for repeatable testing.</li>
+                  <li>Expanding case studies with architecture diagrams + results.</li>
+                </ul>
+                <div class="mt-3">
+                  <div class="small text-muted" style="color: var(--muted) !important;">
+                    Tip: update this “Now” list whenever you ship something—keeps the portfolio alive.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /row -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Projects -->
   <section class="section" id="projects">
     <div class="container">
-      <h2 class="text-center">Featured Projects</h2>
-      <div class="row mt-4">
+      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-2">
+        <div>
+          <h2 class="section-title mb-2">Featured Projects</h2>
+          <p class="section-sub mb-0">
+            A small set of representative builds. Each project links to code and/or a live demo.
+          </p>
+        </div>
+        <a class="btn btn-soft" href="projects.html">View All</a>
+      </div>
+
+      <div class="row g-4 mt-2">
 
         <!-- Project 1 -->
-        <div class="col-md-4">
-          <div class="card">
-            <img src="Rpiyolortosdrone.jpg" class="card-img-top" alt="RPi YOLO Drone" />
-            <div class="card-body">
-              <h5 class="card-title">Raspberry Pi YOLO Drone</h5>
-              <p class="card-text">The goal of this project is to integrate a Raspberry Pi (or small compute module) for real-time person detection using YOLO. The current state of the project is available on <a href="https://github.com/jhherre3/Person-Detection-Raspberry-pi" target="_blank">GitHub</a>.</p>
+        <div class="col-md-6 col-lg-4">
+          <article class="cardx">
+            <img src="Rpiyolortosdrone.jpg" class="thumb" alt="Raspberry Pi YOLO Drone thumbnail" />
+            <div class="cardx-body">
+              <h3>Raspberry Pi YOLO Drone</h3>
+              <p class="meta">
+                Real-time person detection pipeline on small compute (Raspberry Pi / edge module),
+                focused on performance tradeoffs and reliability.
+              </p>
+              <div class="tagrow">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">YOLO</span>
+                <span class="tag">Edge Compute</span>
+              </div>
+              <div class="linkrow">
+                <a class="small-link" href="https://github.com/jhherre3/Person-Detection-Raspberry-pi" target="_blank" rel="noopener">GitHub Repo</a>
+                <a class="small-link" href="projects.html">Case Study</a>
+              </div>
             </div>
-          </div>
+          </article>
         </div>
 
         <!-- Project 2 -->
-        <div class="col-md-4">
-          <div class="card">
-            <img src="Custom_Flight_Controller_Build.jpg" class="card-img-top" alt="Flight Controller Prototype" />
-            <div class="card-body">
-              <h5 class="card-title">Custom Flight Controller</h5>
-              <p class="card-text">This is a custom flight controller I designed using a Honeywell HGUIDE IMU sensor. The board uses open source CircuitPython. To find out more, visit <a href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank">GitHub</a>.</p>
+        <div class="col-md-6 col-lg-4">
+          <article class="cardx">
+            <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Custom Flight Controller thumbnail" />
+            <div class="cardx-body">
+              <h3>Custom Flight Controller</h3>
+              <p class="meta">
+                Custom FC using a Honeywell HGuide IMU, targeting a clean sensor pipeline, deterministic timing,
+                and testable bring-up.
+              </p>
+              <div class="tagrow">
+                <span class="tag">Embedded</span>
+                <span class="tag">IMU</span>
+                <span class="tag">UAV</span>
+              </div>
+              <div class="linkrow">
+                <a class="small-link" href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank" rel="noopener">Project Site</a>
+                <a class="small-link" href="projects.html">Case Study</a>
+              </div>
             </div>
-          </div>
+          </article>
         </div>
 
         <!-- Project 3 -->
-<!-- Project 3 (Updated RoboDK Toolpath Demo with Spiral Thumbnail) -->
-<div class="col-md-4">
-  <div class="card">
-    <img src="spiral.png" class="card-img-top" alt="RoboDK Python Toolpath Simulation" />
-    <div class="card-body">
-      <h5 class="card-title">RoboDK Python Toolpath Demo</h5>
-      <p class="card-text">
-        A Python simulation using a 6-axis Robot in RoboDK. This project involves robotic motion scripting. <a href="https://github.com/jhherre3/Python_robodk_demo" target="_blank">View GitHub</a>.
-      </p>
+        <div class="col-md-6 col-lg-4">
+          <article class="cardx">
+            <img src="spiral.png" class="thumb" alt="RoboDK Python Toolpath Simulation thumbnail" />
+            <div class="cardx-body">
+              <h3>RoboDK Python Toolpath Demo</h3>
+              <p class="meta">
+                Python-driven 6-axis robot motion scripting in RoboDK, exploring repeatable toolpath generation
+                and simulation workflows.
+              </p>
+              <div class="tagrow">
+                <span class="tag">Robotics</span>
+                <span class="tag">Python</span>
+                <span class="tag">Simulation</span>
+              </div>
+              <div class="linkrow">
+                <a class="small-link" href="https://github.com/jhherre3/Python_robodk_demo" target="_blank" rel="noopener">GitHub Repo</a>
+                <a class="small-link" href="projects.html">Case Study</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div><!-- /row -->
+
+      <div class="mt-5">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="now">
+              <h4>What I bring</h4>
+              <ul>
+                <li>Embedded design: bring-up, sensing, timing, interfaces, and debugging.</li>
+                <li>Systems mindset: architecture, constraints, and reliability-first implementation.</li>
+                <li>Tooling: Python automation, visualization, and simulation to accelerate iteration.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="now">
+              <h4>How this stays updated</h4>
+              <ul>
+                <li>Add short “Update” notes (what changed + what you learned) every week.</li>
+                <li>Turn major work into 1–2 page case studies with results and diagrams.</li>
+                <li>Keep projects tagged so the portfolio scales as you add more builds.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
-</div>
+  </section>
 
-
-      <div class="text-center mt-4">
-        <a href="projects.html" class="btn btn-secondary">View All Projects</a>
+  <!-- Optional: keep your GIF section, but make it tasteful and less dominant -->
+  <section class="section">
+    <div class="container">
+      <div class="now text-center">
+        <h4 class="mb-2">Quick note</h4>
+        <p class="mb-3" style="color: var(--muted);">
+          This portfolio is actively evolving—more case studies and test results are added regularly.
+        </p>
+        <!-- If you want the GIF, keep it. Otherwise remove this block. -->
+        <img
+          src="I'Ll Be Back Arnold Schwarzenegger GIF by Top 100 Movie Quotes of All Time.gif"
+          alt="I'll Be Back"
+          class="img-fluid rounded-4"
+          style="max-width: 640px; box-shadow: var(--shadow);"
+        />
+        <div class="mt-2 small" style="color: var(--muted);">“I’ll Be Back.” – Arnold Schwarzenegger</div>
       </div>
     </div>
   </section>
 
-<!-- I'll Be Back GIF Section -->
-<section class="section text-center">
-  <div class="container">
-    <h3 class="mb-3">Just one more thing...</h3>
-    <img src="I'Ll Be Back Arnold Schwarzenegger GIF by Top 100 Movie Quotes of All Time.gif" alt="I'll Be Back GIF" class="img-fluid rounded shadow" style="max-width: 100%; height: auto;" />
-    <p class="mt-2 text-muted">“I’ll Be Back.” – Arnold Schwarzenegger</p>
-  </div>
-</section>
-
   <!-- Footer -->
   <footer>
-    <p>© 2024 jhherre3. All rights reserved. | <a href="mailto:jhherre3@asu.edu">jhherre3@asu.edu</a></p>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div>© <span id="year"></span> jhherre3. All rights reserved.</div>
+      <div class="d-flex gap-3">
+        <a class="small-link" href="mailto:jhherre3@asu.edu">jhherre3@asu.edu</a>
+        <!-- Add your LinkedIn when ready -->
+        <!-- <a class="small-link" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a> -->
+        <a class="small-link" href="https://github.com/jhherre3" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
   </footer>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Dark Mode Toggle -->
   <script>
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    if (localStorage.getItem('dark-mode') === 'enabled') {
-      body.classList.add('dark-mode');
-      darkModeToggle.textContent = 'Light Mode';
+    // Theme toggle (persisted)
+    const root = document.body;
+    const btn = document.getElementById('themeToggle');
+    const key = 'site-theme';
+
+    function setTheme(mode){
+      root.setAttribute('data-theme', mode);
+      btn.textContent = 'Theme: ' + (mode === 'dark' ? 'Dark' : 'Light');
+      localStorage.setItem(key, mode);
+      // Match Bootstrap navbar toggler icon contrast
+      const toggler = document.querySelector('.navbar-toggler');
+      if (toggler) toggler.style.filter = (mode === 'dark') ? 'invert(1)' : 'invert(0)';
     }
 
-    darkModeToggle.addEventListener('click', function () {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('dark-mode', 'enabled');
-        darkModeToggle.textContent = 'Light Mode';
-      } else {
-        localStorage.setItem('dark-mode', 'disabled');
-        darkModeToggle.textContent = 'Dark Mode';
-      }
+    const saved = localStorage.getItem(key);
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(saved || (prefersDark ? 'dark' : 'light'));
+
+    btn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
     });
   </script>
+
 </body>
-</html>
+</html
