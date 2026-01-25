@@ -40,7 +40,7 @@
     a { color: inherit; }
     .text-muted { color: var(--muted) !important; }
 
-    /* Navbar */
+    /* Navbar (matches other pages) */
     .navbar{
       background: rgba(10,14,20,.65);
       backdrop-filter: blur(10px);
@@ -65,6 +65,20 @@
       font-weight: 600;
     }
     .nav-link:hover{ color: var(--text) !important; }
+    .nav-link.active{
+      color: var(--text) !important;
+      position: relative;
+    }
+    .nav-link.active::after{
+      content: "";
+      position: absolute;
+      left: .5rem;
+      right: .5rem;
+      bottom: .25rem;
+      height: 2px;
+      background: rgba(244,110,36,.65);
+      border-radius: 999px;
+    }
 
     /* Buttons */
     .btn{
@@ -103,6 +117,20 @@
       line-height: 1.65;
     }
 
+    /* Section spacing */
+    section.section { padding: 2.25rem 0; }
+    .section-title{
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: .5rem;
+    }
+    .section-subtitle{
+      color: var(--muted);
+      max-width: 85ch;
+      margin-bottom: 0;
+      line-height: 1.65;
+    }
+
     /* Filter bar */
     .filter-bar{
       background: rgba(255,255,255,.05);
@@ -125,7 +153,7 @@
       border-radius: 999px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.82);
+      color: rgba(255,255,255,.86);
       font-weight: 700;
       font-size: .85rem;
       padding: .35rem .7rem;
@@ -165,9 +193,9 @@
     }
     .card-body{ padding: 1.15rem 1.15rem 1.25rem; }
 
-    /* 🔥 FIXED PROJECT TITLE VISIBILITY 🔥 */
-    .project-card .card-title{
-      color: #ffffff !important;
+    /* Title visibility fix (applies to ALL project cards) */
+    .card-title{
+      color: rgba(255,255,255,.96) !important;
       font-weight: 900;
       letter-spacing: -0.01em;
       margin-bottom: .45rem;
@@ -189,7 +217,6 @@
       padding: .25rem .55rem;
       border-radius: 999px;
     }
-
     .card-text{
       color: var(--muted);
       line-height: 1.55;
@@ -207,61 +234,571 @@
     }
     footer a{ color: var(--text); text-decoration: none; }
     footer a:hover{ text-decoration: underline; }
+
+    /* Accessibility */
+    .skip-link{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      left: 10px; top: 10px; width:auto; height:auto; padding:.5rem .75rem;
+      background: #fff; color:#000; border-radius: 10px; z-index: 9999;
+    }
   </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- HEADER UNCHANGED -->
-<nav class="navbar navbar-expand-lg sticky-top">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <span class="brand-dot"></span>
-      Jeremiah Herrera
-    </a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-dot"></span>
+        Jeremiah Herrera
+      </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- MAIN CONTENT (unchanged structure) -->
-<main id="main">
-  <!-- your existing project grid stays EXACTLY the same -->
-</main>
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
-      <div>
-        <div class="fw-semibold">© <span id="year"></span> Jeremiah Herrera</div>
-        <div class="small text-muted">Embedded Hardware • Automation • R&D • Robotics / UAS</div>
-      </div>
-      <div class="d-flex gap-3">
-        <a href="index.html">Home</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-        <a href="mailto:jhherre3@asu.edu">Email</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="projects.html" aria-current="page">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
       </div>
     </div>
-  </div>
-</footer>
+  </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <main id="main">
+    <!-- Page header -->
+    <header class="page-hero">
+      <div class="container">
+        <h1>Projects</h1>
+        <p>
+          A selection of hands-on engineering work across embedded systems, PCB design, automation tooling, robotics simulation,
+          computer vision, and rapid prototyping.
+        </p>
+      </div>
+    </header>
 
+    <!-- Featured Projects (from Home page) -->
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+          <div>
+            <h2 class="section-title mb-1">Featured Projects</h2>
+            <p class="section-subtitle mb-0">
+              A curated set that best represents my current direction (embedded systems, robotics/UAS, and prototyping).
+            </p>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <!-- Featured 1 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img src="Rpiyolortosdrone.jpg" class="thumb" alt="Raspberry Pi YOLO Drone" />
+              <div class="card-body">
+                <div class="meta-row">
+                  <span class="meta">Computer Vision</span>
+                  <span class="meta">Edge Compute</span>
+                  <span class="meta">YOLO</span>
+                </div>
+                <div class="card-title">Raspberry Pi YOLO Drone</div>
+                <p class="card-text">
+                  Real-time person detection on constrained compute for UAV-oriented workflows—focused on capture pipeline reliability,
+                  performance tuning, and deployment constraints.
+                </p>
+                <div class="d-flex gap-2 mt-3">
+                  <a class="btn btn-ghost w-100" href="projects.html#projectsGrid">More projects</a>
+                  <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Person-Detection-Raspberry-pi" target="_blank" rel="noopener">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured 2 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Custom Flight Controller Prototype" />
+              <div class="card-body">
+                <div class="meta-row">
+                  <span class="meta">PCB</span>
+                  <span class="meta">IMU / Sensors</span>
+                  <span class="meta">Embedded</span>
+                </div>
+                <div class="card-title">Custom Flight Controller</div>
+                <p class="card-text">
+                  Custom controller prototype built around a Honeywell HGuide IMU with emphasis on PCB bring-up, sensor validation,
+                  and clean firmware architecture for fast iteration.
+                </p>
+                <div class="d-flex gap-2 mt-3">
+                  <a class="btn btn-ghost w-100" href="projects.html#projectsGrid">More projects</a>
+                  <a class="btn btn-brand w-100" href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank" rel="noopener">Project Page</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured 3 -->
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+              <img src="spiral.png" class="thumb" alt="RoboDK Python Toolpath Simulation" />
+              <div class="card-body">
+                <div class="meta-row">
+                  <span class="meta">Robotics</span>
+                  <span class="meta">Python</span>
+                  <span class="meta">Simulation</span>
+                </div>
+                <div class="card-title">RoboDK Python Toolpath Demo</div>
+                <p class="card-text">
+                  Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation-driven validation,
+                  and a clean interface for repeatable testing.
+                </p>
+                <div class="d-flex gap-2 mt-3">
+                  <a class="btn btn-ghost w-100" href="projects.html#projectsGrid">More projects</a>
+                  <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Python_robodk_demo" target="_blank" rel="noopener">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="pb-3">
+      <div class="container">
+        <div class="filter-bar">
+          <div class="row g-3 align-items-center">
+            <div class="col-lg-6">
+              <div class="filter-label">Quick filters</div>
+              <div class="text-muted" style="line-height:1.55;">
+                Click a tag to filter. This is client-side only; it doesn’t change your repo structure.
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="filter-pill-row" id="filterRow" aria-label="Project filters">
+                <span class="pill active" data-filter="all">All</span>
+                <span class="pill" data-filter="embedded">Embedded</span>
+                <span class="pill" data-filter="pcb">PCB</span>
+                <span class="pill" data-filter="automation">Automation</span>
+                <span class="pill" data-filter="robotics">Robotics</span>
+                <span class="pill" data-filter="vision">Vision/ML</span>
+                <span class="pill" data-filter="iot">IoT</span>
+                <span class="pill" data-filter="fpga">FPGA</span>
+                <span class="pill" data-filter="web">Web/Tools</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects grid -->
+    <section class="pb-4">
+      <div class="container">
+        <div class="row g-3" id="projectsGrid">
+
+          <!-- Spaceship Titanic ML Submission -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="vision web">
+            <a href="https://github.com/jhherre3/KaggleSpaceshipTitanic" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="spaceshipinfo.png" class="thumb" alt="Spaceship Titanic ML Project" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Vision/ML</span>
+                    <span class="meta">XGBoost</span>
+                    <span class="meta">Pipeline</span>
+                  </div>
+                  <div class="card-title">Spaceship Titanic ML Submission</div>
+                  <p class="card-text">
+                    Kaggle pipeline with preprocessing, feature engineering, and model tuning. Documented end-to-end workflow and results.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Robot Welding Toolpath Demo -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics automation">
+            <a href="https://github.com/jhherre3/Robot_Toolpath_Demo" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="cobotweldingsetup2.png" class="thumb" alt="Cobot Welding Simulation" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Robotics</span>
+                    <span class="meta">RoboDK</span>
+                    <span class="meta">Toolpaths</span>
+                  </div>
+                  <div class="card-title">Robot Welding Toolpath Demo</div>
+                  <p class="card-text">
+                    6-axis robot simulation: STL slicing, G-code conversion, TCP setup, and motion validation. Deployment notes included.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Machine Knowledge Documentation -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="automation web">
+            <a href="https://github.com/jhherre3/Machine-Knowledge" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="Machine-knowledge.png" class="thumb" alt="Machine Knowledge System" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Automation</span>
+                    <span class="meta">Documentation</span>
+                    <span class="meta">Ops</span>
+                  </div>
+                  <div class="card-title">Machine Knowledge System</div>
+                  <p class="card-text">
+                    Documentation platform for CNCs, robotics, and manufacturing workflows—capturing tribal knowledge for onboarding and operations.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Inventory Management Solution -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="web automation">
+            <a href="https://github.com/jhherre3/Inventory-Management-Solution" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="homepage.png" class="thumb" alt="Inventory Management App" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Web/Tools</span>
+                    <span class="meta">Flask</span>
+                    <span class="meta">SQLite</span>
+                  </div>
+                  <div class="card-title">Inventory Management Tool</div>
+                  <p class="card-text">
+                    Flask app for managing tools/parts with QR codes, images, and search. Designed for practical shop workflow use.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- DSP YOLO Drone Footage Analysis -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="vision embedded robotics">
+            <a href="https://github.com/jhherre3/Drone-Footage-Person-Detection.py" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="DSPYolodroneanalysis.png" class="thumb" alt="YOLO Drone Analysis" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Vision/ML</span>
+                    <span class="meta">UAV</span>
+                    <span class="meta">Optimization</span>
+                  </div>
+                  <div class="card-title">DSP YOLO Drone Footage Analysis</div>
+                  <p class="card-text">
+                    YOLO object detection on UAV footage with workflow notes for lower latency and constrained compute execution.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Retro Store Interface -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="web">
+            <a href="https://github.com/jhherre3/Retro-Store-Interface" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="Retrostoreinterface.png" class="thumb" alt="Retro Store Web Interface" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Web/Tools</span>
+                    <span class="meta">HTML/CSS</span>
+                    <span class="meta">UI</span>
+                  </div>
+                  <div class="card-title">Retro Store Interface</div>
+                  <p class="card-text">
+                    90s-style storefront template with structured pages and extensible layout for future integrations.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- CNC Code Archive -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="web automation">
+            <a href="https://github.com/jhherre3/CNC-Code-Archive" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="cncjobarchive.png" class="thumb" alt="CNC Code Archive Viewer" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Automation</span>
+                    <span class="meta">CNC</span>
+                    <span class="meta">Web/Tools</span>
+                  </div>
+                  <div class="card-title">CNC Code Archive</div>
+                  <p class="card-text">
+                    Lightweight archive for CNC programs—optimized for quick lookup, viewing, and future workflow expansion.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- DIY FPV Drone Build (no repo link provided) -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics embedded">
+            <div class="card">
+              <img src="DiyFpvdronebuild.jpg" class="thumb" alt="DIY FPV Drone Build" />
+              <div class="card-body">
+                <div class="meta-row">
+                  <span class="meta">UAS</span>
+                  <span class="meta">Build</span>
+                  <span class="meta">Integration</span>
+                </div>
+                <div class="card-title">DIY FPV Drone Build</div>
+                <p class="card-text">
+                  DIY FPV build showcasing component selection, integration, and system assembly. (Link can be added if available.)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solar Signal Weather Station -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="iot embedded">
+            <a href="https://egr-314-team-204.github.io/solarsignal.github.io/" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="Embededsystems design2.jpg" class="thumb" alt="Solar Signal Weather Station" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">IoT</span>
+                    <span class="meta">Sensors</span>
+                    <span class="meta">Control</span>
+                  </div>
+                  <div class="card-title">Solar Signal Weather Station</div>
+                  <p class="card-text">
+                    Collaborative weather station tracking environment data with actuator control for solar alignment and monitoring.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- FPGA Project Series -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="fpga embedded">
+            <a href="https://github.com/jhherre3/FPGA-DE10Lite-Archive/tree/main" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="de10litelayout.jpg" class="thumb" alt="FPGA Project Series" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">FPGA</span>
+                    <span class="meta">Verilog</span>
+                    <span class="meta">DE10-Lite</span>
+                  </div>
+                  <div class="card-title">FPGA Project Series</div>
+                  <p class="card-text">
+                    DE10-Lite projects covering Verilog designs and custom hardware logic implementations with repeatable build notes.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- ESP32 DevKitC -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+            <a href="https://github.com/jhherre3/ESP32-DevKitC" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="esp32_devkitC_v4_pinlayout.png" class="thumb" alt="ESP32 DevKitC Project" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Embedded</span>
+                    <span class="meta">ESP32</span>
+                    <span class="meta">Wi-Fi</span>
+                  </div>
+                  <div class="card-title">ESP32-DevKitC</div>
+                  <p class="card-text">
+                    Arduino-based ESP32 development: GPIO, web server experiments, and sensor integration examples for quick prototyping.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Seeed XIAO RP2350 -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+            <a href="https://github.com/jhherre3/seeed-xiao-rp2350" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="XIAO-RP2350-front.png" class="thumb" alt="Seeed XIAO RP2350" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Embedded</span>
+                    <span class="meta">CircuitPython</span>
+                    <span class="meta">Compact</span>
+                  </div>
+                  <div class="card-title">Seeed XIAO RP2350</div>
+                  <p class="card-text">
+                    Compact embedded exploration using CircuitPython—focused on practical IO tests, power considerations, and quick builds.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Raspberry Pi 4B Projects -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot web">
+            <a href="https://github.com/jhherre3/Raspberrypi4b" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="rpipinout.png" class="thumb" alt="Raspberry Pi 4B Projects" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Embedded</span>
+                    <span class="meta">Raspberry Pi</span>
+                    <span class="meta">Systems</span>
+                  </div>
+                  <div class="card-title">Raspberry Pi 4B Projects</div>
+                  <p class="card-text">
+                    Projects exploring touch interfaces, dashboards, emulation, and home automation potential with practical setup notes.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- ESP32-CAM Surveillance Module -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot vision">
+            <a href="https://github.com/jhherre3/ESP32-CAM-Surveillance" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="esp32-cam.jpg" class="thumb" alt="ESP32-CAM Surveillance Module" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Embedded</span>
+                    <span class="meta">ESP32-CAM</span>
+                    <span class="meta">Video</span>
+                  </div>
+                  <div class="card-title">ESP32-CAM Surveillance Module</div>
+                  <p class="card-text">
+                    Compact Wi-Fi camera system with live streaming, onboard control, and a base for DIY monitoring experiments.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- XIAO ESP32-C6 Development -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+            <a href="https://github.com/jhherre3/XIAO-ESP32-C6" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="seeedesp32c6.png" class="thumb" alt="XIAO ESP32-C6 Dev Board" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Embedded</span>
+                    <span class="meta">Wi-Fi 6</span>
+                    <span class="meta">Low Power</span>
+                  </div>
+                  <div class="card-title">XIAO ESP32-C6 Development</div>
+                  <p class="card-text">
+                    Experiments with GPIO, web control, displays, and sensors on a compact Wi-Fi 6 + BLE + Thread-enabled platform.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Raspberry Pi Pico 2 Dev Projects -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+            <a href="https://github.com/jhherre3/RaspPico2" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="Rasppico2pinout.png" class="thumb" alt="Raspberry Pi Pico 2 Dev Board" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Embedded</span>
+                    <span class="meta">CircuitPython</span>
+                    <span class="meta">Battery</span>
+                  </div>
+                  <div class="card-title">Raspberry Pi Pico 2 Projects</div>
+                  <p class="card-text">
+                    Microcontroller projects covering IO interfacing, portable power approaches, and compact embedded applications.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Amplitude Modulation Receiver -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded">
+            <a href="https://github.com/jhherre3/Amplitude-Modulation-Receiver" target="_blank" rel="noopener" class="card-link">
+              <div class="card">
+                <img src="AMradio.png" class="thumb" alt="AM Receiver Project" />
+                <div class="card-body">
+                  <div class="meta-row">
+                    <span class="meta">Embedded</span>
+                    <span class="meta">Analog</span>
+                    <span class="meta">Signals</span>
+                  </div>
+                  <div class="card-title">Amplitude Modulation Receiver</div>
+                  <p class="card-text">
+                    Hands-on analog signal processing project demonstrating AM demodulation concepts and practical circuit behavior.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+        <div>
+          <div class="fw-semibold">© <span id="year"></span> Jeremiah Herrera</div>
+          <div class="small text-muted">Embedded Hardware • Automation • R&D • Robotics / UAS</div>
+        </div>
+        <div class="d-flex gap-3">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projects</a>
+          <a href="resume.html">Resume</a>
+          <a href="contact.html">Contact</a>
+          <a href="mailto:jhherre3@asu.edu">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Filtering + Year -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Filter logic
+    const pills = Array.from(document.querySelectorAll('.pill'));
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+
+    function setActivePill(target) {
+      pills.forEach(p => p.classList.remove('active'));
+      target.classList.add('active');
+    }
+
+    function applyFilter(filter) {
+      cards.forEach(card => {
+        const tags = (card.getAttribute('data-tags') || '').split(' ').filter(Boolean);
+        const show = (filter === 'all') ? true : tags.includes(filter);
+        card.style.display = show ? '' : 'none';
+      });
+    }
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filter = pill.getAttribute('data-filter');
+        setActivePill(pill);
+        applyFilter(filter);
+      });
+    });
+  </script>
 </body>
 </html>
