@@ -116,6 +116,25 @@
       line-height: 1.65;
     }
 
+    /* ===== WORKFLOW HEADER (UPDATED ONLY) ===== */
+    .section-head{
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+    .section-head .section-title{
+      margin-bottom: .55rem;
+      color: rgba(255,255,255,.96) !important;
+      text-shadow: 0 1px 0 rgba(0,0,0,.35);
+    }
+    .section-head .section-subtitle{
+      margin: 0 auto;
+      max-width: 78ch;
+    }
+    /* On small screens keep spacing tight so it doesn't look "off" */
+    @media (max-width: 576px){
+      .section-head{ margin-bottom: 1rem; }
+    }
+
     /* Panels & Cards */
     .panel, .card{
       background: var(--panel);
@@ -234,11 +253,20 @@
       filter: saturate(1.05) contrast(1.03);
     }
     .card-body{ padding: 1.15rem 1.15rem 1.25rem; }
+
+    /* Featured Projects title + card title visibility (UPDATED ONLY) */
+    #featured .section-title{
+      color: rgba(255,255,255,.96) !important; /* matches Projects page title visibility */
+      text-shadow: 0 1px 0 rgba(0,0,0,.35);
+    }
     .card-title{
       font-weight: 900;
       letter-spacing: -0.01em;
       margin-bottom: .45rem;
+      color: rgba(255,255,255,.96);
+      text-shadow: 0 1px 0 rgba(0,0,0,.35);
     }
+
     .card-text{
       color: var(--muted);
       line-height: 1.55;
@@ -429,14 +457,18 @@
         </div>
       </div>
     </section>
-  </main>
 
+    <section class="section pt-0">
+      <div class="container">
         <hr class="soft-rule my-4" />
 
-        <h2 class="section-title">Engineering workflow</h2>
-        <p class="section-subtitle">
-          The throughline across my work is repeatable iteration: define the problem, prototype quickly, test hard, and refine until it’s reliable.
-        </p>
+        <!-- ===== WORKFLOW HEADER (UPDATED ONLY) ===== -->
+        <div class="section-head">
+          <h2 class="section-title">Engineering workflow</h2>
+          <p class="section-subtitle">
+            The throughline across my work is repeatable iteration: define the problem, prototype quickly, test hard, and refine until it’s reliable.
+          </p>
+        </div>
 
         <div class="workflow" aria-label="Engineering workflow steps">
           <div class="step">
@@ -569,8 +601,8 @@
         </div>
       </div>
     </section>
+  </main>
 
-    
   <!-- Footer (keep consistent across all pages) -->
   <footer>
     <div class="container">
