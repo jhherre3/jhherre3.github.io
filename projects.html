@@ -24,6 +24,8 @@
       --border: rgba(255,255,255,.10);
       --shadow: 0 18px 50px rgba(0,0,0,.35);
       --radius: 16px;
+      --input: rgba(255,255,255,.06);
+      --inputFocus: rgba(244,110,36,.16);
     }
 
     html { scroll-behavior: smooth; }
@@ -80,28 +82,9 @@
       border-radius: 999px;
     }
 
-    /* Buttons */
-    .btn{
-      border-radius: 999px;
-      font-weight: 700;
-      padding: .65rem 1rem;
-    }
-    .btn-brand{
-      background: var(--brand);
-      border: 1px solid rgba(244,110,36,.35);
-      color: #121212;
-    }
-    .btn-brand:hover{ filter: brightness(1.05); }
-    .btn-ghost{
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn-ghost:hover{ background: rgba(255,255,255,.09); }
-
     /* Page header */
     .page-hero{
-      padding: 4.25rem 0 1.75rem;
+      padding: 4.25rem 0 1.25rem;
       text-align: center;
     }
     .page-hero h1{
@@ -114,20 +97,6 @@
       color: var(--muted);
       max-width: 80ch;
       margin: 0 auto;
-      line-height: 1.65;
-    }
-
-    /* Section spacing */
-    section.section { padding: 2.25rem 0; }
-    .section-title{
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: .5rem;
-    }
-    .section-subtitle{
-      color: var(--muted);
-      max-width: 85ch;
-      margin-bottom: 0;
       line-height: 1.65;
     }
 
@@ -166,6 +135,37 @@
       color: var(--text);
     }
 
+    /* Search */
+    .search-wrap{
+      display: flex;
+      gap: .6rem;
+      align-items: center;
+    }
+    .search-input{
+      width: 100%;
+      background: var(--input);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      padding: .8rem .9rem;
+      outline: none;
+    }
+    .search-input::placeholder{ color: rgba(255,255,255,.45); }
+    .search-input:focus{
+      border-color: rgba(244,110,36,.55);
+      box-shadow: 0 0 0 .25rem var(--inputFocus);
+    }
+    .count-pill{
+      white-space: nowrap;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      padding: .45rem .7rem;
+      color: rgba(255,255,255,.85);
+      font-weight: 800;
+      font-size: .85rem;
+    }
+
     /* Cards */
     .card-link{
       text-decoration: none;
@@ -193,7 +193,7 @@
     }
     .card-body{ padding: 1.15rem 1.15rem 1.25rem; }
 
-    /* Title visibility fix (applies to ALL project cards) */
+    /* Title visibility fix */
     .card-title{
       color: rgba(255,255,255,.96) !important;
       font-weight: 900;
@@ -234,21 +234,10 @@
     }
     footer a{ color: var(--text); text-decoration: none; }
     footer a:hover{ text-decoration: underline; }
-
-    /* Accessibility */
-    .skip-link{
-      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
-    }
-    .skip-link:focus{
-      left: 10px; top: 10px; width:auto; height:auto; padding:.5rem .75rem;
-      background: #fff; color:#000; border-radius: 10px; z-index: 9999;
-    }
   </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
@@ -285,104 +274,24 @@
       </div>
     </header>
 
-    <!-- Featured Projects (from Home page) -->
-    <section class="section" id="featured">
-      <div class="container">
-        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
-          <div>
-            <h2 class="section-title mb-1">Featured Projects</h2>
-            <p class="section-subtitle mb-0">
-              A curated set that best represents my current direction (embedded systems, robotics/UAS, and prototyping).
-            </p>
-          </div>
-        </div>
-
-        <div class="row g-3 mt-1">
-          <!-- Featured 1 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-              <img src="Rpiyolortosdrone.jpg" class="thumb" alt="Raspberry Pi YOLO Drone" />
-              <div class="card-body">
-                <div class="meta-row">
-                  <span class="meta">Computer Vision</span>
-                  <span class="meta">Edge Compute</span>
-                  <span class="meta">YOLO</span>
-                </div>
-                <div class="card-title">Raspberry Pi YOLO Drone</div>
-                <p class="card-text">
-                  Real-time person detection on constrained compute for UAV-oriented workflows—focused on capture pipeline reliability,
-                  performance tuning, and deployment constraints.
-                </p>
-                <div class="d-flex gap-2 mt-3">
-                  <a class="btn btn-ghost w-100" href="projects.html#projectsGrid">More projects</a>
-                  <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Person-Detection-Raspberry-pi" target="_blank" rel="noopener">GitHub</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Featured 2 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-              <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Custom Flight Controller Prototype" />
-              <div class="card-body">
-                <div class="meta-row">
-                  <span class="meta">PCB</span>
-                  <span class="meta">IMU / Sensors</span>
-                  <span class="meta">Embedded</span>
-                </div>
-                <div class="card-title">Custom Flight Controller</div>
-                <p class="card-text">
-                  Custom controller prototype built around a Honeywell HGuide IMU with emphasis on PCB bring-up, sensor validation,
-                  and clean firmware architecture for fast iteration.
-                </p>
-                <div class="d-flex gap-2 mt-3">
-                  <a class="btn btn-ghost w-100" href="projects.html#projectsGrid">More projects</a>
-                  <a class="btn btn-brand w-100" href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank" rel="noopener">Project Page</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Featured 3 -->
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-              <img src="spiral.png" class="thumb" alt="RoboDK Python Toolpath Simulation" />
-              <div class="card-body">
-                <div class="meta-row">
-                  <span class="meta">Robotics</span>
-                  <span class="meta">Python</span>
-                  <span class="meta">Simulation</span>
-                </div>
-                <div class="card-title">RoboDK Python Toolpath Demo</div>
-                <p class="card-text">
-                  Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation-driven validation,
-                  and a clean interface for repeatable testing.
-                </p>
-                <div class="d-flex gap-2 mt-3">
-                  <a class="btn btn-ghost w-100" href="projects.html#projectsGrid">More projects</a>
-                  <a class="btn btn-brand w-100" href="https://github.com/jhherre3/Python_robodk_demo" target="_blank" rel="noopener">GitHub</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Filters -->
+    <!-- Filters + Search -->
     <section class="pb-3">
       <div class="container">
         <div class="filter-bar">
           <div class="row g-3 align-items-center">
             <div class="col-lg-6">
-              <div class="filter-label">Quick filters</div>
+              <div class="filter-label">Search + filters</div>
               <div class="text-muted" style="line-height:1.55;">
-                Click a tag to filter. This is client-side only; it doesn’t change your repo structure.
+                Type to search titles/descriptions, or click a tag to filter.
               </div>
             </div>
+
             <div class="col-lg-6">
+              <div class="search-wrap mb-2">
+                <input id="searchInput" class="search-input" type="text" placeholder="Search projects (e.g., ESP32, CNC, YOLO, FPGA)..." aria-label="Search projects" />
+                <div id="resultsCount" class="count-pill">0</div>
+              </div>
+
               <div class="filter-pill-row" id="filterRow" aria-label="Project filters">
                 <span class="pill active" data-filter="all">All</span>
                 <span class="pill" data-filter="embedded">Embedded</span>
@@ -400,13 +309,14 @@
       </div>
     </section>
 
-    <!-- Projects grid -->
+    <!-- Projects grid (ALL BASIC TILES) -->
     <section class="pb-4">
       <div class="container">
         <div class="row g-3" id="projectsGrid">
 
           <!-- Spaceship Titanic ML Submission -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="vision web">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="vision web"
+               data-search="spaceship titanic kaggle xgboost pipeline preprocessing feature engineering model tuning">
             <a href="https://github.com/jhherre3/KaggleSpaceshipTitanic" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="spaceshipinfo.png" class="thumb" alt="Spaceship Titanic ML Project" />
@@ -426,7 +336,8 @@
           </div>
 
           <!-- Robot Welding Toolpath Demo -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics automation">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics automation"
+               data-search="robot welding toolpath robodk stl slicing gcode tcp motion validation">
             <a href="https://github.com/jhherre3/Robot_Toolpath_Demo" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="cobotweldingsetup2.png" class="thumb" alt="Cobot Welding Simulation" />
@@ -446,7 +357,8 @@
           </div>
 
           <!-- Machine Knowledge Documentation -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="automation web">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="automation web"
+               data-search="machine knowledge documentation cnc robotics manufacturing workflows onboarding operations">
             <a href="https://github.com/jhherre3/Machine-Knowledge" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="Machine-knowledge.png" class="thumb" alt="Machine Knowledge System" />
@@ -466,7 +378,8 @@
           </div>
 
           <!-- Inventory Management Solution -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="web automation">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="web automation"
+               data-search="inventory management tool flask sqlite qr codes images search shop workflow">
             <a href="https://github.com/jhherre3/Inventory-Management-Solution" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="homepage.png" class="thumb" alt="Inventory Management App" />
@@ -486,7 +399,8 @@
           </div>
 
           <!-- DSP YOLO Drone Footage Analysis -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="vision embedded robotics">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="vision embedded robotics"
+               data-search="dsp yolo drone footage person detection uav optimization latency constrained compute">
             <a href="https://github.com/jhherre3/Drone-Footage-Person-Detection.py" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="DSPYolodroneanalysis.png" class="thumb" alt="YOLO Drone Analysis" />
@@ -506,7 +420,8 @@
           </div>
 
           <!-- Retro Store Interface -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="web">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="web"
+               data-search="retro store interface 90s storefront template html css ui layout">
             <a href="https://github.com/jhherre3/Retro-Store-Interface" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="Retrostoreinterface.png" class="thumb" alt="Retro Store Web Interface" />
@@ -526,7 +441,8 @@
           </div>
 
           <!-- CNC Code Archive -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="web automation">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="web automation"
+               data-search="cnc code archive viewer programs lookup viewing web tools workflow">
             <a href="https://github.com/jhherre3/CNC-Code-Archive" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="cncjobarchive.png" class="thumb" alt="CNC Code Archive Viewer" />
@@ -545,8 +461,9 @@
             </a>
           </div>
 
-          <!-- DIY FPV Drone Build (no repo link provided) -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics embedded">
+          <!-- DIY FPV Drone Build -->
+          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics embedded"
+               data-search="diy fpv drone build integration components assembly uas">
             <div class="card">
               <img src="DiyFpvdronebuild.jpg" class="thumb" alt="DIY FPV Drone Build" />
               <div class="card-body">
@@ -564,7 +481,8 @@
           </div>
 
           <!-- Solar Signal Weather Station -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="iot embedded">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="iot embedded"
+               data-search="solar signal weather station sensors control actuator solar alignment monitoring">
             <a href="https://egr-314-team-204.github.io/solarsignal.github.io/" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="Embededsystems design2.jpg" class="thumb" alt="Solar Signal Weather Station" />
@@ -584,7 +502,8 @@
           </div>
 
           <!-- FPGA Project Series -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="fpga embedded">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="fpga embedded"
+               data-search="fpga de10-lite verilog hardware logic build notes">
             <a href="https://github.com/jhherre3/FPGA-DE10Lite-Archive/tree/main" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="de10litelayout.jpg" class="thumb" alt="FPGA Project Series" />
@@ -604,7 +523,8 @@
           </div>
 
           <!-- ESP32 DevKitC -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot"
+               data-search="esp32 devkitc arduino gpio web server sensors prototyping wifi">
             <a href="https://github.com/jhherre3/ESP32-DevKitC" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="esp32_devkitC_v4_pinlayout.png" class="thumb" alt="ESP32 DevKitC Project" />
@@ -624,7 +544,8 @@
           </div>
 
           <!-- Seeed XIAO RP2350 -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot"
+               data-search="seeed xiao rp2350 circuitpython io tests power considerations compact builds">
             <a href="https://github.com/jhherre3/seeed-xiao-rp2350" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="XIAO-RP2350-front.png" class="thumb" alt="Seeed XIAO RP2350" />
@@ -644,7 +565,8 @@
           </div>
 
           <!-- Raspberry Pi 4B Projects -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot web">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot web"
+               data-search="raspberry pi 4b dashboards touch interfaces emulation home automation systems">
             <a href="https://github.com/jhherre3/Raspberrypi4b" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="rpipinout.png" class="thumb" alt="Raspberry Pi 4B Projects" />
@@ -664,7 +586,8 @@
           </div>
 
           <!-- ESP32-CAM Surveillance Module -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot vision">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot vision"
+               data-search="esp32-cam surveillance wifi camera live streaming onboard control video monitoring">
             <a href="https://github.com/jhherre3/ESP32-CAM-Surveillance" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="esp32-cam.jpg" class="thumb" alt="ESP32-CAM Surveillance Module" />
@@ -684,7 +607,8 @@
           </div>
 
           <!-- XIAO ESP32-C6 Development -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot"
+               data-search="xiao esp32-c6 wifi 6 ble thread gpio web control displays sensors low power">
             <a href="https://github.com/jhherre3/XIAO-ESP32-C6" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="seeedesp32c6.png" class="thumb" alt="XIAO ESP32-C6 Dev Board" />
@@ -704,7 +628,8 @@
           </div>
 
           <!-- Raspberry Pi Pico 2 Dev Projects -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded iot"
+               data-search="raspberry pi pico 2 circuitpython io interfacing portable power battery microcontroller">
             <a href="https://github.com/jhherre3/RaspPico2" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="Rasppico2pinout.png" class="thumb" alt="Raspberry Pi Pico 2 Dev Board" />
@@ -724,7 +649,8 @@
           </div>
 
           <!-- Amplitude Modulation Receiver -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded">
+          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded"
+               data-search="amplitude modulation receiver am demodulation analog signals circuit">
             <a href="https://github.com/jhherre3/Amplitude-Modulation-Receiver" target="_blank" rel="noopener" class="card-link">
               <div class="card">
                 <img src="AMradio.png" class="thumb" alt="AM Receiver Project" />
@@ -770,35 +696,66 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Filtering + Year -->
+  <!-- Filtering + Search + Year -->
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Filter logic
     const pills = Array.from(document.querySelectorAll('.pill'));
     const cards = Array.from(document.querySelectorAll('.project-card'));
+    const searchInput = document.getElementById('searchInput');
+    const resultsCount = document.getElementById('resultsCount');
+
+    let activeFilter = 'all';
 
     function setActivePill(target) {
       pills.forEach(p => p.classList.remove('active'));
       target.classList.add('active');
     }
 
-    function applyFilter(filter) {
-      cards.forEach(card => {
-        const tags = (card.getAttribute('data-tags') || '').split(' ').filter(Boolean);
-        const show = (filter === 'all') ? true : tags.includes(filter);
-        card.style.display = show ? '' : 'none';
-      });
+    function matchesFilter(card, filter) {
+      const tags = (card.getAttribute('data-tags') || '').split(' ').filter(Boolean);
+      return (filter === 'all') ? true : tags.includes(filter);
     }
 
+    function matchesSearch(card, query) {
+      if (!query) return true;
+      const hay = (
+        (card.querySelector('.card-title')?.textContent || '') + ' ' +
+        (card.querySelector('.card-text')?.textContent || '') + ' ' +
+        (card.getAttribute('data-search') || '') + ' ' +
+        (card.getAttribute('data-tags') || '')
+      ).toLowerCase();
+      return hay.includes(query);
+    }
+
+    function applyAll() {
+      const q = (searchInput.value || '').trim().toLowerCase();
+      let shown = 0;
+
+      cards.forEach(card => {
+        const show = matchesFilter(card, activeFilter) && matchesSearch(card, q);
+        card.style.display = show ? '' : 'none';
+        if (show) shown++;
+      });
+
+      resultsCount.textContent = shown;
+    }
+
+    // Init count on load
+    applyAll();
+
+    // Pill click filter
     pills.forEach(pill => {
       pill.addEventListener('click', () => {
-        const filter = pill.getAttribute('data-filter');
+        activeFilter = pill.getAttribute('data-filter') || 'all';
         setActivePill(pill);
-        applyFilter(filter);
+        applyAll();
       });
     });
+
+    // Search input filter (live)
+    searchInput.addEventListener('input', applyAll);
   </script>
 </body>
 </html>
