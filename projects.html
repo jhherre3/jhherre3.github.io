@@ -100,6 +100,21 @@
       line-height: 1.65;
     }
 
+    /* Section headings */
+    .section-title{
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: .55rem;
+      color: rgba(255,255,255,.96);
+      text-shadow: 0 1px 0 rgba(0,0,0,.35);
+    }
+    .section-subtitle{
+      color: var(--muted);
+      max-width: 90ch;
+      margin-bottom: 0;
+      line-height: 1.65;
+    }
+
     /* Filter bar */
     .filter-bar{
       background: rgba(255,255,255,.05);
@@ -166,7 +181,7 @@
       font-size: .85rem;
     }
 
-    /* ===== CLICKABLE CARDS (MATCH INDEX HOVER + HIGHLIGHT) ===== */
+    /* ===== CLICKABLE CARDS (hover + highlight) ===== */
     .card-link{
       text-decoration: none;
       display: block;
@@ -202,7 +217,6 @@
     }
     .card-body{ padding: 1.15rem 1.15rem 1.25rem; }
 
-    /* Title visibility fix */
     .card-title{
       color: rgba(255,255,255,.96) !important;
       font-weight: 900;
@@ -230,21 +244,6 @@
       color: var(--muted);
       line-height: 1.55;
       margin-bottom: 0;
-    }
-
-    /* Featured section heading style */
-    .section-title{
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: .55rem;
-      color: rgba(255,255,255,.96);
-      text-shadow: 0 1px 0 rgba(0,0,0,.35);
-    }
-    .section-subtitle{
-      color: var(--muted);
-      max-width: 90ch;
-      margin-bottom: 0;
-      line-height: 1.65;
     }
 
     /* Footer */
@@ -298,18 +297,19 @@
       </div>
     </header>
 
-    <!-- ===== Featured Projects (ADDED) ===== -->
-    <section class="pb-3">
+    <!-- ===== Featured Projects (NO DUPLICATES) ===== -->
+    <section class="pb-3" id="featuredSection">
       <div class="container">
         <h2 class="section-title">Featured Projects</h2>
         <p class="section-subtitle">
           High-signal projects that best represent my direction in embedded systems, robotics/UAS, and prototype-driven engineering.
         </p>
 
-        <div class="row g-3 mt-2">
+        <div class="row g-3 mt-2" id="featuredGrid">
           <!-- Featured: YOLO Drone -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="vision embedded robotics"
-               data-search="yolo drone footage person detection uav optimization latency constrained compute raspberry pi">
+          <div class="col-md-6 col-lg-4 project-card project-featured"
+               data-tags="vision embedded robotics"
+               data-search="dsp yolo drone footage person detection uav optimization latency constrained compute raspberry pi">
             <a href="https://github.com/jhherre3/Drone-Footage-Person-Detection.py" target="_blank" rel="noopener" class="card-link">
               <div class="card position-relative click-card">
                 <img src="DSPYolodroneanalysis.png" class="thumb" alt="YOLO Drone Analysis" />
@@ -328,8 +328,9 @@
             </a>
           </div>
 
-          <!-- Featured: Low-SWaP-C Flight Controller Site (NEW) -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded pcb robotics"
+          <!-- Featured: Low-SWaP-C Flight Controller Site -->
+          <div class="col-md-6 col-lg-4 project-card project-featured"
+               data-tags="embedded pcb robotics"
                data-search="low swap c flight controller imu sensors pcb bring-up capstone team29">
             <a href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank" rel="noopener" class="card-link">
               <div class="card position-relative click-card">
@@ -349,8 +350,9 @@
             </a>
           </div>
 
-          <!-- Featured: RoboDK Python Toolpath Demo (NEW / FIXED LINK) -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics automation"
+          <!-- Featured: RoboDK Python Toolpath Demo -->
+          <div class="col-md-6 col-lg-4 project-card project-featured"
+               data-tags="robotics automation"
                data-search="robodk python toolpath demo robotics simulation stl slicing gcode tcp motion validation">
             <a href="https://github.com/jhherre3/Python_robodk_demo" target="_blank" rel="noopener" class="card-link">
               <div class="card position-relative click-card">
@@ -369,6 +371,7 @@
               </div>
             </a>
           </div>
+
         </div>
       </div>
     </section>
@@ -408,7 +411,7 @@
       </div>
     </section>
 
-    <!-- Projects grid (ALL BASIC TILES) -->
+    <!-- Projects grid (NO FEATURED DUPLICATES HERE) -->
     <section class="pb-4">
       <div class="container">
         <div class="row g-3" id="projectsGrid">
@@ -428,27 +431,6 @@
                   <div class="card-title">Spaceship Titanic ML Submission</div>
                   <p class="card-text">
                     Kaggle pipeline with preprocessing, feature engineering, and model tuning. Documented end-to-end workflow and results.
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- RoboDK Python Toolpath Demo (UPDATED LINK) -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="robotics automation"
-               data-search="robodk python toolpath demo robotics simulation stl slicing gcode tcp motion validation">
-            <a href="https://github.com/jhherre3/Python_robodk_demo" target="_blank" rel="noopener" class="card-link">
-              <div class="card position-relative click-card">
-                <img src="spiral.png" class="thumb" alt="RoboDK Python Toolpath Demo" />
-                <div class="card-body">
-                  <div class="meta-row">
-                    <span class="meta">Robotics</span>
-                    <span class="meta">Python</span>
-                    <span class="meta">RoboDK</span>
-                  </div>
-                  <div class="card-title">RoboDK Python Toolpath Demo</div>
-                  <p class="card-text">
-                    Python-driven motion scripting in RoboDK—toolpath generation, simulation validation, and repeatable testing workflows.
                   </p>
                 </div>
               </div>
@@ -497,48 +479,6 @@
             </a>
           </div>
 
-          <!-- DSP YOLO Drone Footage Analysis -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="vision embedded robotics"
-               data-search="dsp yolo drone footage person detection uav optimization latency constrained compute">
-            <a href="https://github.com/jhherre3/Drone-Footage-Person-Detection.py" target="_blank" rel="noopener" class="card-link">
-              <div class="card position-relative click-card">
-                <img src="DSPYolodroneanalysis.png" class="thumb" alt="YOLO Drone Analysis" />
-                <div class="card-body">
-                  <div class="meta-row">
-                    <span class="meta">Vision/ML</span>
-                    <span class="meta">UAV</span>
-                    <span class="meta">Optimization</span>
-                  </div>
-                  <div class="card-title">DSP YOLO Drone Footage Analysis</div>
-                  <p class="card-text">
-                    YOLO object detection on UAV footage with workflow notes for lower latency and constrained compute execution.
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- Low-SWaP-C Flight Controller (ALSO LISTED IN GRID) -->
-          <div class="col-md-6 col-lg-4 project-card" data-tags="embedded pcb robotics"
-               data-search="low swap c flight controller imu sensors pcb bring-up capstone team29">
-            <a href="https://jhherre3.github.io/Team29LowSwapC/" target="_blank" rel="noopener" class="card-link">
-              <div class="card position-relative click-card">
-                <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Low-SWaP-C Flight Controller Project" />
-                <div class="card-body">
-                  <div class="meta-row">
-                    <span class="meta">Embedded</span>
-                    <span class="meta">PCB</span>
-                    <span class="meta">Flight Control</span>
-                  </div>
-                  <div class="card-title">Low-SWaP-C Flight Controller</div>
-                  <p class="card-text">
-                    Capstone project site: low-cost, low-SWaP-C flight controller development with sensor integration, validation, and iteration.
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-
           <!-- Retro Store Interface -->
           <div class="col-md-6 col-lg-4 project-card" data-tags="web"
                data-search="retro store interface 90s storefront template html css ui layout">
@@ -581,7 +521,7 @@
             </a>
           </div>
 
-          <!-- DIY FPV Drone Build (intentionally non-clickable until link exists) -->
+          <!-- DIY FPV Drone Build (non-clickable until link exists) -->
           <div class="col-md-6 col-lg-4 project-card" data-tags="robotics embedded"
                data-search="diy fpv drone build integration components assembly uas">
             <div class="card">
@@ -816,13 +756,16 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Filtering + Search + Year -->
+  <!-- Filtering + Search + Year + Featured Collapse -->
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const pills = Array.from(document.querySelectorAll('.pill'));
     const cards = Array.from(document.querySelectorAll('.project-card'));
+    const featuredCards = Array.from(document.querySelectorAll('.project-featured'));
+    const featuredSection = document.getElementById('featuredSection');
+
     const searchInput = document.getElementById('searchInput');
     const resultsCount = document.getElementById('resultsCount');
 
@@ -840,12 +783,11 @@
 
     function matchesSearch(card, query) {
       if (!query) return true;
-      const hay = (
-        (card.querySelector('.card-title')?.textContent || '') + ' ' +
-        (card.querySelector('.card-text')?.textContent || '') + ' ' +
-        (card.getAttribute('data-search') || '') + ' ' +
-        (card.getAttribute('data-tags') || '')
-      ).toLowerCase();
+      const title = (card.querySelector('.card-title')?.textContent || '');
+      const desc  = (card.querySelector('.card-text')?.textContent || '');
+      const meta  = (card.getAttribute('data-search') || '');
+      const tags  = (card.getAttribute('data-tags') || '');
+      const hay = (title + ' ' + desc + ' ' + meta + ' ' + tags).toLowerCase();
       return hay.includes(query);
     }
 
@@ -859,10 +801,15 @@
         if (show) shown++;
       });
 
+      // Count includes featured + grid (but no duplicates now)
       resultsCount.textContent = shown;
+
+      // Collapse Featured section if none of its cards are visible
+      const featuredVisible = featuredCards.some(c => c.style.display !== 'none');
+      featuredSection.style.display = featuredVisible ? '' : 'none';
     }
 
-    // Init count on load
+    // Init on load
     applyAll();
 
     // Pill click filter
