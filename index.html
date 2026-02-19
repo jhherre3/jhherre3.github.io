@@ -256,7 +256,7 @@
 
     /* Featured Projects title + card title visibility (UPDATED ONLY) */
     #featured .section-title{
-      color: rgba(255,255,255,.96) !important; /* matches Projects page title visibility */
+      color: rgba(255,255,255,.96) !important;
       text-shadow: 0 1px 0 rgba(0,0,0,.35);
     }
     .card-title{
@@ -334,6 +334,20 @@
       left: 10px; top: 10px; width:auto; height:auto; padding:.5rem .75rem;
       background: #fff; color:#000; border-radius: 10px; z-index: 9999;
     }
+
+    /* ===== CLICKABLE FEATURED PROJECT CARDS (NEW) ===== */
+    .click-card{
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .click-card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(244,110,36,.35);
+    }
+    .click-card:focus-within{
+      outline: 2px solid rgba(244,110,36,.45);
+      outline-offset: 3px;
+    }
   </style>
 </head>
 
@@ -396,7 +410,7 @@
         <div class="row g-3 mt-2">
           <!-- Project 1 -->
           <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
+            <div class="card h-100 position-relative click-card">
               <img src="Rpiyolortosdrone.jpg" class="thumb" alt="Raspberry Pi YOLO Drone" />
               <div class="card-body">
                 <div class="meta-row">
@@ -408,13 +422,22 @@
                 <p class="card-text">
                   Real-time detection on constrained compute for UAV-oriented workflows—focused on reliability, performance tuning, and deployment constraints.
                 </p>
+
+                <!-- CLICK TARGET -->
+                <a
+                  href="https://github.com/jhherre3/Drone-Footage-Person-Detection.py"
+                  class="stretched-link"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Open Raspberry Pi YOLO Drone project on GitHub"
+                ></a>
               </div>
             </div>
           </div>
 
           <!-- Project 2 -->
           <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
+            <div class="card h-100 position-relative click-card">
               <img src="Custom_Flight_Controller_Build.jpg" class="thumb" alt="Custom Flight Controller Prototype" />
               <div class="card-body">
                 <div class="meta-row">
@@ -426,13 +449,22 @@
                 <p class="card-text">
                   Custom controller prototype centered on PCB bring-up, sensor validation, and clean firmware architecture for iteration.
                 </p>
+
+                <!-- CLICK TARGET -->
+                <a
+                  href="https://jhherre3.github.io/Team29LowSwapC/"
+                  class="stretched-link"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Open Low-SWaP-C Flight Controller project site"
+                ></a>
               </div>
             </div>
           </div>
 
           <!-- Project 3 -->
           <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
+            <div class="card h-100 position-relative click-card">
               <img src="spiral.png" class="thumb" alt="RoboDK Python Toolpath Simulation" />
               <div class="card-body">
                 <div class="meta-row">
@@ -444,6 +476,15 @@
                 <p class="card-text">
                   Python-driven motion scripting for a 6-axis robot in RoboDK—toolpath generation, simulation validation, repeatable testing.
                 </p>
+
+                <!-- CLICK TARGET -->
+                <a
+                  href="https://github.com/jhherre3/Python_robodk_demo"
+                  class="stretched-link"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Open RoboDK Python Toolpath Demo on GitHub"
+                ></a>
               </div>
             </div>
           </div>
